@@ -6,7 +6,7 @@
       <div class="grow flex flex-col gap-1">
         <label class="block  font-semibold" for="name">Name <span class="font-normal">(required)</span></label>
         <input type="text" id="name" formControlName="name"
-          class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark focus:outline-none focus:ring-2 focus:accent-accent_purple placeholder:text-lg placeholder:font-light "
+          class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark  placeholder:text-lg placeholder:font-light "
           placeholder="Enter name here" />
         @if (!triggerErrorDisplay("name")) {
         <p class="text-smooth_dark font-light text-lg">So that I know who I am chatting with!</p>
@@ -29,7 +29,7 @@
         <label class="block font-semibold" for="email">Email <span class="font-normal">(required)</span></label>
         <input type="email" id="email" formControlName="email" class="w-full px-4 py-2 border rounded-lg shadow-md 
   outline outline-1 outline-smooth_dark 
-  focus:outline-none focus:ring-2 focus:accent-accent_purple 
+   
   placeholder:text-lg placeholder:font-light" placeholder="Enter email address here" />
 
         @if (!triggerErrorDisplay("email")) {
@@ -51,7 +51,7 @@
     <div class="grow flex flex-col gap-1">
       <label class="block  font-semibold" for="subject">Subject <span class="font-normal">(required)</span></label>
       <input type="text" id="subject" formControlName="subject"
-        class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark focus:outline-none focus:ring-2 focus:accent-accent_purple placeholder:text-lg placeholder:font-light"
+        class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark  placeholder:text-lg placeholder:font-light"
         placeholder="Enter message subject here" />
       @if (triggerErrorDisplay("subject")) {
       <div
@@ -74,7 +74,7 @@
     <div class="grow flex flex-col gap-1">
       <label class="block  font-semibold" for="message">Message <span class="font-normal">(required)</span></label>
       <textarea id="message" formControlName="message" rows="4"
-        class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark focus:outline-none focus:ring-2 focus:accent-accent_purple"></textarea>
+        class="w-full px-4 py-2 border rounded-lg shadow-md outline outline-1 outline-smooth_dark "></textarea>
       @if (triggerErrorDisplay("message")) {
       <div
         class="flex flex-row gap-1 bg-error_red items-center px-2 rounded-md text-light font-semibold text-lg animate-shake">
