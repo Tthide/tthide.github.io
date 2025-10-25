@@ -16,10 +16,10 @@
                         <div class="relative w-full h-full flex justify-center items-end">
                             
                             <!-- Iframe container -->
-                            <div  #unityContainer aria-hidden="true" tabindex="-1"class="w-full h-full"></div>
+                            <div  #unityContainer aria-hidden="true" tabindex="-1" class="w-full h-full"></div>
 
                             <!-- Fullscreen button -->
-                            <button
+                            <button aria-hidden="true" tabindex="-1"
                                 class="absolute bottom-2 right-2 bg-accent_purple text-white flex items-center gap-2 text-center p-2 rounded font-konkhmer duration-300 ease-in-out hover:scale-125 z-10"
                                 (click)="toggleFullScreen()">
                                 @if(!isFullscreen) {

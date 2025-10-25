@@ -30,6 +30,7 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   // Iframe reference
   private unityIframe?: HTMLIFrameElement;
 
+
   // Fullscreen state
   isFullscreen = false;
 
@@ -83,11 +84,13 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
       iframe.style.border = 'none';
       iframe.style.display = 'block';
       iframe.setAttribute('allowfullscreen', 'true');
+      iframe.setAttribute('tabindex', '-1');
+      iframe.setAttribute('aria-hidden', 'true');
 
 
       // Point to a dedicated Unity loader HTML page
       iframe.src = `unity-loader.html?gameId=${gameId}&t=${Date.now()}`;
- 
+
       this.unityIframe = iframe;
 
       // Listen for messages from iframe
