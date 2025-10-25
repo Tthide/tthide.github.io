@@ -1,42 +1,139 @@
 /* Core Animations */
 @keyframes bounce-smooth {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-@keyframes exhaust {
-  0% { background: linear-gradient(to bottom, transparent 10%, #f5f5f5 100%); }
-  50% { background: linear-gradient(to bottom, transparent 8%, #f5f5f5 100%); }
-  75% { background: linear-gradient(to bottom, transparent 12%, #f5f5f5 100%); }
-}
-@keyframes fumes {
-  50% { transform: scale(1.5); background-color: transparent; }
-  51% { transform: scale(0.8); }
-  100% { background-color: #f5f5f5; transform: scale(1); }
-}
-@keyframes fumes2 {
-  50% { transform: scale(1.1); }
-}
-@keyframes twinkle {
-  80% { transform: scale(1.1); opacity: 0.7; }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
 }
 
-/* Apply Tailwind-compatible animation names */
-.animate-bounce-smooth { animation: bounce-smooth 0.5s infinite; }
-.animate-exhaust { animation: exhaust 0.2s infinite; }
+@keyframes exhaust {
+    0% {
+        background: linear-gradient(to bottom, transparent 10%, #f5f5f5 100%);
+    }
+
+    50% {
+        background: linear-gradient(to bottom, transparent 8%, #f5f5f5 100%);
+    }
+
+    75% {
+        background: linear-gradient(to bottom, transparent 12%, #f5f5f5 100%);
+    }
+}
+
+@keyframes fumes {
+    50% {
+        transform: scale(1.5);
+        background-color: transparent;
+    }
+
+    51% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        background-color: #f5f5f5;
+        transform: scale(1);
+    }
+}
+
+@keyframes fumes2 {
+    50% {
+        transform: scale(0.7);
+    }
+}
+@keyframes rocket-launch {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(320%, -150%) scale(0.4) rotate(45deg);
+    opacity: 0.0;
+  }
+}
+
+
+.animate-bounce-smooth {
+    animation: bounce-smooth 0.5s infinite;
+}
+
+.animate-exhaust {
+    animation: exhaust 0.2s infinite;
+}
 
 /* Fumes styling */
 .exhaust-fumes li {
-  @apply absolute list-none rounded-full bg-[#f5f5f5];
+    @apply absolute list-none rounded-full bg-[#f5f5f5];
 }
-.fume-1 { width: 200px; height: 200px; bottom: -300px; animation: fumes 5s infinite; }
-.fume-2 { width: 150px; height: 150px; left: -120px; top: 260px; animation: fumes 3.2s infinite; }
-.fume-3 { width: 120px; height: 120px; left: -40px; top: 330px; animation: fumes 3s 1s infinite; }
-.fume-4 { width: 100px; height: 100px; left: -170px; top: 380px; animation: fumes 4s 2s infinite; }
-.fume-5 { width: 130px; height: 130px; left: -120px; top: 350px; animation: fumes 5s infinite; }
-.fume-6 { width: 200px; height: 200px; left: -60px; top: 280px; animation: fumes2 10s infinite; }
-.fume-7 { width: 100px; height: 100px; left: -100px; top: 320px; }
-.fume-8 { width: 110px; height: 110px; left: 70px; top: 340px; }
-.fume-9 { width: 90px; height: 90px; left: 200px; top: 380px; animation: fumes 20s infinite; }
+
+.fume-1 {
+    width: 200px;
+    height: 200px;
+    bottom: -300px;
+    animation: fumes 3s infinite;
+}
+
+.fume-2 {
+    width: 150px;
+    height: 150px;
+    left: -120px;
+    top: 260px;
+    animation: fumes 2.2s infinite;
+}
+
+.fume-3 {
+    width: 120px;
+    height: 120px;
+    left: -40px;
+    top: 330px;
+    animation: fumes 3s 1s infinite;
+}
+
+.fume-4 {
+    width: 100px;
+    height: 100px;
+    left: -100px;
+    top: 380px;
+    animation: fumes 4s 2s infinite;
+}
+
+.fume-5 {
+    width: 130px;
+    height: 130px;
+    left: -120px;
+    top: 350px;
+    animation: fumes 8s infinite;
+}
+
+.fume-6 {
+    width: 200px;
+    height: 200px;
+    left: -60px;
+    top: 280px;
+    animation: fumes2 5s 1.5s infinite;
+}
+
+/*.fume-7 { width: 100px; height: 100px; left: -100px; top: 320px; }
+.fume-8 { width: 110px; height: 110px; left: 70px; top: 340px; }*/
+.fume-9 {
+    width: 90px;
+    height: 90px;
+    left: 110px;
+    top: 380px;
+    animation: fumes 5s infinite;
+}
+
+
+.animate-launch {
+    animation: rocket-launch 3s cubic-bezier(.55,.25,.31,.97) forwards;
+    /* one-time, no loop */
+}
+
 
 /* Stars */
 .star li {
