@@ -29,7 +29,7 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
 
   // Iframe reference
   private unityIframe?: HTMLIFrameElement;
-
+  private messageHandler?: (event: MessageEvent) => void;
 
   // Fullscreen state
   isFullscreen = false;
@@ -91,17 +91,15 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
       // Point to a dedicated Unity loader HTML page
       iframe.src = `unity-loader.html?gameId=${gameId}&t=${Date.now()}`;
 
-      this.unityIframe = iframe;
 
       // Listen for messages from iframe
       const messageHandler = (event: MessageEvent) => {
-        // Verify origin if needed: if (event.origin !== window.location.origin) return;
 
         const data = event.data;
 
         if (data.type === 'unity-progress') {
           this.unityProgress = data.progress;
-          console.log('[Unity] Progress:', (data.progress * 100).toFixed(2) + '%');
+          //console.log('[Unity] Progress:', (data.progress * 100).toFixed(2) + '%');
         } else if (data.type === 'unity-loaded') {
           console.log('[Unity] Game loaded successfully');
           this.isUnityLoading = false;
@@ -116,10 +114,12 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
       window.addEventListener('message', messageHandler);
 
       // Store handler reference for cleanup
+      this.messageHandler = messageHandler;
       (iframe as any)._messageHandler = messageHandler;
 
       // Append iframe to container
       container.appendChild(iframe);
+      this.unityIframe = iframe;
 
       console.log('[Unity] Iframe created and appended');
     }
@@ -156,26 +156,34 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
     // Unsubscribe
     this.sub?.unsubscribe();
 
-    // Remove message handler
-    if (this.unityIframe && (this.unityIframe as any)._messageHandler) {
-      window.removeEventListener('message', (this.unityIframe as any)._messageHandler);
-    }
-
     // Destroying iframe 
     if (this.unityIframe) {
       console.log('[Unity] Destroying iframe...');
-
-      // Clear iframe src to stop any ongoing requests
-      this.unityIframe.src = 'about:blank';
-
-      if (this.unityIframe.parentElement) {
-        this.unityIframe.parentElement.removeChild(this.unityIframe);
-      }
-
+      const iframeRef = this.unityIframe;
       this.unityIframe = undefined;
-      console.log('[Unity] Iframe destroyed');
+
+      try {
+        // Replace with placeholder to break layout & GPU ties immediately
+        const placeholder = document.createElement('div');
+        iframeRef.replaceWith(placeholder);
+
+        // Let Unity stop, then remove placeholder
+        setTimeout(() => placeholder.remove(), 500);
+
+        // blank the iframe just before removal (extra safety)
+        iframeRef.srcdoc = '';
+      } catch (err) {
+        console.error('[Unity] Error removing iframe:', err);
+      }
+      console.log('[Unity] Iframe replaced, awaiting GC');
     }
 
+    // Remove message handler
+    if (this.messageHandler) {
+      window.removeEventListener('message', this.messageHandler);
+      this.messageHandler = undefined;
+      console.log('[Unity] Message handler removed');
+    }
     // Reset state
     this.unityLoaded = false;
     this.isUnityLoading = false;
