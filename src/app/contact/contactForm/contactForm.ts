@@ -13,7 +13,8 @@ export class ContactFormComponent {
   contactForm: FormGroup;
 
   controlsValidity: { [key: string]: boolean } = {};
-  submittedOnce = false;
+  submittedOnce:boolean = false;
+  sendingMessage:boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
@@ -52,6 +53,7 @@ export class ContactFormComponent {
     }
 
     if (this.contactForm.valid) {
+      this.sendingMessage=true;
       const now = new Date();
       const datePipe = new DatePipe('en-US');
       const formattedTime = datePipe.transform(now, 'yyyy-MM-dd HH:mm:ss');
@@ -74,6 +76,7 @@ export class ContactFormComponent {
             // reset flags
             this.submittedOnce = false;
             this.controlsValidity = {};
+            this.sendingMessage=false;
           },
           (error) => {
             console.error(error.text);
@@ -87,7 +90,7 @@ export class ContactFormComponent {
         this.controlsValidity[key] = !!control && control.invalid;
         if (control && control.invalid) {
           this.triggerShake(key);
-        }
+        } 
       });
       //alert('Please fill out all fields correctly.');
     }
