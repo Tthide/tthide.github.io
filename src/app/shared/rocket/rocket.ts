@@ -1,23 +1,41 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, AfterViewInit } from '@angular/core';
+
 @Component({
   selector: 'app-rocket',
-  imports: [],
   templateUrl: './rocket.html',
-  styleUrl: './rocket.css'
+  styleUrls: ['./rocket.css']
 })
-export class Rocket {
+export class Rocket implements AfterViewInit {
   @ViewChild('rocket') rocketElement!: ElementRef<HTMLDivElement>;
 
+  /** Inputs to toggle animations */
+  @Input() enableBounce: boolean = true;
+  @Input() enableExhaust: boolean = true;
+  @Input() enableLaunchAnimation: boolean = true;
+
+  ngAfterViewInit() {
+    // Apply initial animation classes based on inputs
+    if (this.enableBounce) {
+      this.rocketElement.nativeElement
+        .querySelector('.rocket-body')
+        ?.classList.add('animate-bounce-smooth');
+    }
+
+    if (this.enableExhaust) {
+      this.rocketElement.nativeElement
+        .querySelector('.exhaust-flame')
+        ?.classList.add('animate-exhaust');
+    }
+  }
+
   launchRocket() {
+    if (!this.enableLaunchAnimation) return;
+
     const el = this.rocketElement.nativeElement;
 
-    // remove any existing animation class (for reuse)
+    // Remove and re-add the animation class for repeated launches
     el.classList.remove('animate-launch');
-
-    // Force reflow so animation restarts if called again
-    void el.offsetWidth;
-
-    // Add the animation class
+    void el.offsetWidth; // force reflow
     el.classList.add('animate-launch');
   }
 }

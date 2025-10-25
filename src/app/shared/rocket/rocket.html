@@ -1,18 +1,18 @@
 <!--Adapted from Eva Lettner https://codepen.io/eva_trostlos/pen/aZQoLN-->
 <div
     class="relative flex min-h-screen items-center justify-center bg-gradient-to-b from-accent_purple via-accent_blue to-light overflow-hidden">
-            <ul class="absolute z-0 star">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    
-    <div  #rocket class=" rocket absolute w-20 bottom-[30%] left-[40%] rotate-45">
-        <div class="rocket-body z-10 relative w-20 animate-bounce-smooth ">
+    <ul class="absolute z-0 star">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <div #rocket class=" rocket absolute w-20 bottom-[30%] left-[40%] rotate-45">
+        <div class="rocket-body z-10 relative w-20 ">
             <div
                 class="body relative z-20 h-[180px] bg-[#dadada] rounded-t-[100%] rounded-b-[60%] border-t-[7px] border-t-[#f5f5f5]">
             </div>
@@ -31,9 +31,11 @@
             </div>
         </div>
 
-        <div class="exhaust-flame absolute top-[90%] left-1/2 -translate-x-1/2 w-[28px] h-[150px] animate-exhaust">
-        </div>
 
+
+        @if (enableExhaust)
+        { <div class="exhaust-flame absolute top-[90%] left-1/2 -translate-x-1/2 w-[28px] h-[150px] animate-exhaust">
+        </div>
         <ul class="exhaust-fumes">
             <li class="fume fume-1"></li>
             <li class="fume fume-2"></li>
@@ -44,13 +46,13 @@
             <li class="fume fume-7"></li>
             <li class="fume fume-8"></li>
             <li class="fume fume-9"></li>
-        </ul>
+        </ul>}
 
 
     </div>
-
-    <button (click)="launchRocket()"
+    @if (enableLaunchAnimation)
+    { <button (click)="launchRocket()"
         class="absolute bottom-10 px-6 py-3 bg-accent_purple text-white rounded-xl shadow-lg hover:opacity-90">
         Launch 🚀
-    </button>
+    </button>}
 </div>
