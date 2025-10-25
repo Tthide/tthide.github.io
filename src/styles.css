@@ -18,9 +18,8 @@
 }
 
 @layer base {
-
+  /* custom in focus outline */
   /* define focus color per background */
-
   .bg-accent_purple {
     --focus-ring: theme('colors.accent_blue');
   }
@@ -32,14 +31,10 @@
   .bg-primary {
     --focus-ring: theme('colors.light');
   }
-
-
-  a:focus,
   a:focus-visible,
-  button:focus,
   button:focus-visible,
-  input:focus,
-  textarea:focus {
+  input:focus-visible,
+  textarea:focus-visible {
     @apply ring-2 rounded-md outline-none;
     box-shadow:0 0 0 3px var(--focus-ring), 0 0 0 4px rgba(0,0,0,0.2) ;    /* fallback for Tailwind */
   }
