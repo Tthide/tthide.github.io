@@ -1,87 +1,75 @@
 @if (project$ | async; as project)
 {<div class="flex flex-col gap-20">
     <!-- Hero -->
-    <section class="flex flex-col items-center text-center h-hero lg:h-hero-lg">
+        <section class="flex flex-col items-center text-center h-hero lg:h-hero-lg">
         <!-- Title -->
         <h1 class="text-smooth_dark text-5xl lg:text-8xl font-spartan" [innerHTML]="project.content.info_card.title">
         </h1>
 
-        <!-- Middle container: Game or img + icon on lg+, img only on smaller screens -->
+        <!-- Middle container: Game or img + icon -->
         <div class="flex-1 flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden gap-8">
-            <!-- Picture -->
-            @if(project.content.info_card.hasGame){
-            <div id="unity-container"
-                class="max-w-full max-h-full h-full w-full lg:flex-1 flex justify-center items-stretch">
+            
+            <!-- Unity Game with Iframe -->
+            @if(project.content.info_card.hasGame) {
+                <div aria-hidden="true" tabindex="-1" class="max-w-full max-h-full h-full w-full lg:flex-1 flex justify-center items-stretch">
+                    @if (unityLoaded) {
+                        <div class="relative w-full h-full flex justify-center items-end">
+                            
+                            <!-- Iframe container -->
+                            <div  #unityContainer aria-hidden="true" tabindex="-1"class="w-full h-full"></div>
 
-                <div id="unity-canvas-container" class="relative w-full h-full flex justify-center items-end">
-                    <canvas id="unity-canvas" class="w-full h-full "></canvas>
+                            <!-- Fullscreen button -->
+                            <button
+                                class="absolute bottom-2 right-2 bg-accent_purple text-white flex items-center gap-2 text-center p-2 rounded font-konkhmer duration-300 ease-in-out hover:scale-125 z-10"
+                                (click)="toggleFullScreen()">
+                                @if(!isFullscreen) {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="relative z-10 lucide lucide-expand-icon lucide-expand">
+                                        <path d="m15 15 6 6" />
+                                        <path d="m15 9 6-6" />
+                                        <path d="M21 16v5h-5" />
+                                        <path d="M21 8V3h-5" />
+                                        <path d="M3 16v5h5" />
+                                        <path d="m3 21 6-6" />
+                                        <path d="M3 8V3h5" />
+                                        <path d="M9 9 3 3" />
+                                    </svg>
+                                } @else {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="relative z-10 lucide lucide-shrink-icon lucide-shrink">
+                                        <path d="m15 15 6 6m-6-6v4.8m0-4.8h4.8" />
+                                        <path d="M9 19.8V15m0 0H4.2M9 15l-6 6" />
+                                        <path d="M15 4.2V9m0 0h4.8M15 9l6-6" />
+                                        <path d="M9 4.2V9m0 0H4.2M9 9 3 3" />
+                                    </svg>
+                                }
+                            </button>
 
-                    <button
-                        class="absolute bottom-2 right-2 bg-accent_purple text-white flex items-center gap-2 text-center p-2 rounded font-konkhmer  duration-300 ease-in-out hover:scale-125 "
-                        (click)="toggleFullScreen()">
-                        @if(!isFullscreen)
-                        { <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class=" relative z-10 lucide lucide-expand-icon lucide-expand">
-                            <path d="m15 15 6 6" />
-                            <path d="m15 9 6-6" />
-                            <path d="M21 16v5h-5" />
-                            <path d="M21 8V3h-5" />
-                            <path d="M3 16v5h5" />
-                            <path d="m3 21 6-6" />
-                            <path d="M3 8V3h5" />
-                            <path d="M9 9 3 3" />
-                        </svg>}
-                        @else {
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="relative z-10 lucide lucide-shrink-icon lucide-shrink">
-                            <path d="m15 15 6 6m-6-6v4.8m0-4.8h4.8" />
-                            <path d="M9 19.8V15m0 0H4.2M9 15l-6 6" />
-                            <path d="M15 4.2V9m0 0h4.8M15 9l6-6" />
-                            <path d="M9 4.2V9m0 0H4.2M9 9 3 3" />
-                        </svg>
-                        }
-                    </button>
-                    <!-- Loading overlay -->
-                    @if(isUnityLoading){
-                    <div
-                        class="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-70 text-white font-spartan">
-                        <div class="w-2/3 bg-gray-700 rounded-full h-2 mb-4 overflow-hidden">
-                            <div class="bg-white h-full"
-                                [style.width.%]="(unityProgress >= 1 ? 100 : unityProgress * 100)">
-                            </div>
                         </div>
-                        <span class="text-sm">{{ (unityProgress * 100).toFixed(2)}}%</span>
-                        @if(unityProgress < 1){ <span class="text-xs mt-2 text-gray-300">Loading Unity Game...</span>
-                            }
-
-                            @if(unityProgress >= 1){
-                            <span class="text-xs mt-2 text-green-400">Almost ready!</span>
-                            }
-
-                    </div>
                     }
                 </div>
-            </div>
             }
-            <!-- Unity Game -->
+            
+            <!-- Picture (if no game) -->
             @else if (project.content.info_card.picture.url) {
-            <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
-                class="max-w-full max-h-full object-contain lg:flex-1" />
+                <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
+                    class="max-w-full max-h-full object-contain lg:flex-1" />
             }
             @else {
-            <span class="text-smooth_dark text-lg sm:text-xl font-spartan">
-                Project Main Picture Placeholder
-            </span>
+                <span aria-hidden class="text-smooth_dark text-lg sm:text-xl font-spartan">
+                    Project Main Picture Placeholder
+                </span>
             }
 
-            @if(!project.content.info_card.hasGame)
-            { <!-- Rotating icon -->
-            <div class="hidden lg:flex justify-center items-center lg:flex-1">
-                <app-rotating-text-icon [size]="90" [fontSize]="10" [text]="'READ MORE'" [speed]="14"
-                    [scale]="2"></app-rotating-text-icon>
-            </div>}
+            @if(!project.content.info_card.hasGame) {
+                <!-- Rotating icon -->
+                <div aria-hidden class="hidden lg:flex justify-center items-center lg:flex-1">
+                    <app-rotating-text-icon [size]="90" [fontSize]="10" [text]="'READ MORE'" [speed]="14"
+                        [scale]="2"></app-rotating-text-icon>
+                </div>
+            }
         </div>
     </section>
 

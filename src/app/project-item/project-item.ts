@@ -1,12 +1,10 @@
-import { Component, NgZone, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DataService, Project } from "../services/data.service";
 import { Observable, Subscription, defer } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 import { RotatingTextIconComponent } from "../shared/rotating-text-icon/rotating-text-icon";
 import { AsyncPipe } from "@angular/common";
-
-declare let createUnityInstance: any; // Unity global from loader.js
 
 @Component({
   selector: "app-project-item",
@@ -15,21 +13,30 @@ declare let createUnityInstance: any; // Unity global from loader.js
   standalone: true,
   styleUrl: "./project-item.css"
 })
-export class ProjectItemComponent implements OnDestroy {
+export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   project$!: Observable<Project | undefined>;
+  @ViewChild('unityContainer', { read: ElementRef }) unityContainerRef?: ElementRef<HTMLDivElement>;
 
-  // UI state for loading progress
+  // UI state
   isUnityLoading = false;
   unityProgress = 0;
   private sub?: Subscription;
-  private unityLoaded = false;
+  unityLoaded = false;
 
-  // UI State fullscreen
+  // Loading flags
+  private containerReady = false;
+  private projectReady: Project | null = null;
+
+  // Iframe reference
+  private unityIframe?: HTMLIFrameElement;
+
+  // Fullscreen state
   isFullscreen = false;
 
-  private resizeObserver?: ResizeObserver;
-
-  constructor(private route: ActivatedRoute, private dataService: DataService, private zone: NgZone) { }
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
     this.project$ = this.route.paramMap.pipe(
@@ -37,135 +44,140 @@ export class ProjectItemComponent implements OnDestroy {
       switchMap(id => defer(() => this.dataService.getProjectById(+id)))
     );
 
-    // React to project data changes
     this.sub = this.project$.subscribe(project => {
-      if (project?.content?.info_card?.hasGame && !this.unityLoaded) {
+      if (project?.content?.info_card?.hasGame) {
+        this.projectReady = project;
         this.unityLoaded = true;
-        this.loadUnityGame(project.id);
+        if (this.containerReady) {
+          this.loadUnityGame(project.id);
+        }
       }
     });
   }
 
+  ngAfterViewInit() {
+    this.containerReady = true;
+    if (this.projectReady) {
+      this.loadUnityGame(this.projectReady.id);
+    }
+  }
+
   private loadUnityGame(gameId: number) {
-    /* Unity App loading pipeline */
-    console.log('[Unity] Loading script...');
+    console.log('[Unity] Loading game in iframe, ID:', gameId);
     this.isUnityLoading = true;
     this.unityProgress = 0;
-    const script = document.createElement("script");
 
-    // Fetching game's loader script
-    script.src = `unity-webgl/${gameId}/unity.loader.js`;
-    console.log(`[Unity] Script path: ${script.src}`);
+    const waitForContainer = () => {
+      const container = this.unityContainerRef?.nativeElement;
+      if (!container) {
+        console.warn('[Unity] Container not ready yet, retrying...');
+        setTimeout(waitForContainer, 50); // retry until canvas exists
+
+        return;
+      }
+
+      // Create iframe
+      const iframe = document.createElement('iframe');
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      iframe.style.display = 'block';
+      iframe.setAttribute('allowfullscreen', 'true');
 
 
-    script.onload = () => {
-      console.log('[Unity] Script loaded successfully!');
-      const canvas = document.querySelector("#unity-canvas") as HTMLCanvasElement;
-      if (!canvas) return;
+      // Point to a dedicated Unity loader HTML page
+      iframe.src = `unity-loader.html?gameId=${gameId}&t=${Date.now()}`;
+ 
+      this.unityIframe = iframe;
 
-      const config = {
-        dataUrl: `unity-webgl/${gameId}/unity.data`,
-        frameworkUrl: `unity-webgl/${gameId}/unity.framework.js`,
-        codeUrl: `unity-webgl/${gameId}/unity.wasm`,
-        streamingAssetsUrl: 'StreamingAssets',
-        companyName: 'YourCompany',
-        productName: 'YourGame',
-        productVersion: '1.0',
-        matchWebGLToCanvasSize: false
+      // Listen for messages from iframe
+      const messageHandler = (event: MessageEvent) => {
+        // Verify origin if needed: if (event.origin !== window.location.origin) return;
+
+        const data = event.data;
+
+        if (data.type === 'unity-progress') {
+          this.unityProgress = data.progress;
+          console.log('[Unity] Progress:', (data.progress * 100).toFixed(2) + '%');
+        } else if (data.type === 'unity-loaded') {
+          console.log('[Unity] Game loaded successfully');
+          this.isUnityLoading = false;
+          this.unityLoaded = true;
+          this.unityProgress = 1;
+        } else if (data.type === 'unity-error') {
+          console.error('[Unity] Error:', data.error);
+          this.isUnityLoading = false;
+        }
       };
 
+      window.addEventListener('message', messageHandler);
 
-      console.log('[Unity] Creating instance...');
-      createUnityInstance(canvas, config, (progress: number) => {
-        this.zone.run(() => this.unityProgress = progress);
-      }).then((unityInstance: any) => {
-        console.log('[Unity] Loaded successfully!', unityInstance);
-        this.isUnityLoading = false;
+      // Store handler reference for cleanup
+      (iframe as any)._messageHandler = messageHandler;
 
-        // Ensure initial sizing happens after DOM layout
-        requestAnimationFrame(() => this.adjustCanvasSize(canvas));
+      // Append iframe to container
+      container.appendChild(iframe);
 
-        // Watch for container resizing
-        const container = canvas.parentElement!;
-        this.resizeObserver = new ResizeObserver(() => this.adjustCanvasSize(canvas));
-        this.resizeObserver.observe(container);
-      })
-        .catch((err: any) => {
-          console.error('[Unity] Failed to load:', err);
-          this.isUnityLoading = false;
-        });
-    };
-
-    script.onerror = (e) => {
-      console.error('[Unity] Script failed to load', e);
-      this.isUnityLoading = false;
-    };
-
-    document.body.appendChild(script);
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
-
-  adjustCanvasSize(canvas: HTMLCanvasElement, fullscreenResize: boolean = false) {
-    /* Method to resize the unity canva according to its parent HTML container in the template
-    While the Canvas element CSS size and the WebGL render target size are by default in sync, here it wasn't really rendering well to my liking
-    Therefore I manually resize the WebGL render target size */
-    const container = canvas.parentElement;
-    if (!container) return;
-
-    const { width, height } = container.getBoundingClientRect();
-
-    const maxDPR = 2; // cap high-DPI scaling, found that 2 works well with trial and error
-    const dpr = Math.max(window.devicePixelRatio, maxDPR);
-
-    // Set visual size (Canvas element CSS size)
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    if (!fullscreenResize) {    // Set internal buffer (WebGL render target size)
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      console.log('[Unity] Iframe created and appended');
     }
-    else {
-      canvas.width = width * Math.max(dpr / 2, 1);
-      canvas.height = height * Math.max(dpr / 2, 1);
-    }
+
+    waitForContainer();
   }
 
   toggleFullScreen() {
-    const canvasContainer = document.getElementById('unity-canvas-container');
-
-    const canvas = document.querySelector("#unity-canvas") as HTMLCanvasElement;
-
-    if (!canvasContainer) return;
-
-    // Watch for container resizing
-
-    const container = canvas.parentElement!;
-
+    const container = this.unityContainerRef?.nativeElement;
+    if (!container) return;
 
     if (!document.fullscreenElement) {
-      canvasContainer.requestFullscreen()
+      container.requestFullscreen()
         .then(() => {
-
-          this.isFullscreen = !this.isFullscreen;
-          this.adjustCanvasSize(canvas, true);
-          this.resizeObserver = new ResizeObserver(() => this.adjustCanvasSize(canvas, true));
-          this.resizeObserver.observe(container);
+          this.isFullscreen = true;
+          console.log('[Unity] Entered fullscreen');
         })
-        .catch(err => {
-          console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
+        .catch(err => console.error('Fullscreen error:', err));
     } else {
       document.exitFullscreen();
-      this.isFullscreen = !this.isFullscreen;
-      this.adjustCanvasSize(canvas, false);
-      this.resizeObserver = new ResizeObserver(() => this.adjustCanvasSize(canvas, false));
-      this.resizeObserver.observe(container);
-
+      this.isFullscreen = false;
+      console.log('[Unity] Exited fullscreen');
     }
   }
 
+  ngOnDestroy() {
+    console.log('[Unity] === DESTROY START ===');
+
+    // Exit fullscreen
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+
+    // Unsubscribe
+    this.sub?.unsubscribe();
+
+    // Remove message handler
+    if (this.unityIframe && (this.unityIframe as any)._messageHandler) {
+      window.removeEventListener('message', (this.unityIframe as any)._messageHandler);
+    }
+
+    // Destroying iframe 
+    if (this.unityIframe) {
+      console.log('[Unity] Destroying iframe...');
+
+      // Clear iframe src to stop any ongoing requests
+      this.unityIframe.src = 'about:blank';
+
+      if (this.unityIframe.parentElement) {
+        this.unityIframe.parentElement.removeChild(this.unityIframe);
+      }
+
+      this.unityIframe = undefined;
+      console.log('[Unity] Iframe destroyed');
+    }
+
+    // Reset state
+    this.unityLoaded = false;
+    this.isUnityLoading = false;
+    this.containerReady = false;
+    this.projectReady = null;
+
+  }
 }
