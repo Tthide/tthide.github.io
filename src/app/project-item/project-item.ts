@@ -31,9 +31,6 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   private unityIframe?: HTMLIFrameElement;
   private messageHandler?: (event: MessageEvent) => void;
 
-  // Fullscreen state
-  isFullscreen = false;
-
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService
@@ -125,24 +122,6 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
     }
 
     waitForContainer();
-  }
-
-  toggleFullScreen() {
-    const container = this.unityContainerRef?.nativeElement;
-    if (!container) return;
-
-    if (!document.fullscreenElement) {
-      container.requestFullscreen()
-        .then(() => {
-          this.isFullscreen = true;
-          console.log('[Unity] Entered fullscreen');
-        })
-        .catch(err => console.error('Fullscreen error:', err));
-    } else {
-      document.exitFullscreen();
-      this.isFullscreen = false;
-      console.log('[Unity] Exited fullscreen');
-    }
   }
 
   ngOnDestroy() {
