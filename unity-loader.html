@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Loader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #unity-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #unity-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #progress-bar-container {
+            width: 80%;
+            max-width: 400px;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #483AA0, #6e5be3);
+            transition: width 0.1s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .unity-button {
+            position: absolute;
+            bottom: 16px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 8px;
+            background: #483AA0;
+            color: #F9F5EE;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+
+        .unity-button:hover {
+            transform: scale(1.2);
+        }
+
+        #fullscreen-button {
+            right: 16px;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="unity-container">
+        <canvas id="unity-canvas"></canvas>
+        <div id="loading-overlay">
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="progress-text">Loading: 0%</div>
+        </div>
+        <!-- Fullscreen button -->
+        <button id="fullscreen-button" class="unity-button" title="Fullscreen">
+            <svg id="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 15 6 6" />
+                <path d="m15 9 6-6" />
+                <path d="M21 16v5h-5" />
+                <path d="M21 8V3h-5" />
+                <path d="M3 16v5h5" />
+                <path d="m3 21 6-6" />
+                <path d="M3 8V3h5" />
+                <path d="M9 9 3 3" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameId = urlParams.get('gameId');
+
+
+
+        if (!gameId) {
+            console.error('[Unity] No gameId provided');
+            window.parent.postMessage({ type: 'unity-error', error: 'No gameId provided' }, '*');
+        } else {
+            const loaderScript = document.createElement('script');
+            loaderScript.src = `unity-webgl/${gameId}/unity.loader.js`;
+
+            loaderScript.onload = () => {
+                const canvas = document.getElementById('unity-canvas');
+                const progressBar = document.getElementById('progress-bar');
+                const progressText = document.getElementById('progress-text');
+                const loadingOverlay = document.getElementById('loading-overlay');
+
+                const config = {
+                    dataUrl: `unity-webgl/${gameId}/unity.data`,
+                    frameworkUrl: `unity-webgl/${gameId}/unity.framework.js`,
+                    codeUrl: `unity-webgl/${gameId}/unity.wasm`,
+                    streamingAssetsUrl: 'StreamingAssets',
+                    companyName: 'YourCompany',
+                    productName: 'YourGame',
+                    productVersion: '1.0',
+                    matchWebGLToCanvasSize: false,
+                    WebGLPageVisibility: false
+                };
+
+                createUnityInstance(canvas, config, (progress) => {
+                    const percent = progress * 100;
+                    progressBar.style.width = percent + '%';
+                    progressText.textContent = `Loading: ${percent.toFixed(1)}%`;
+                    window.parent.postMessage({ type: 'unity-progress', progress: progress }, '*');
+                }).then((unityInstance) => {
+                    loadingOverlay.classList.add('hidden');
+                    window.parent.postMessage({ type: 'unity-loaded' }, '*');
+
+                    function resizeCanvas() {
+                        const container = canvas.parentElement;
+                        const rect = container.getBoundingClientRect();
+                        canvas.style.width = rect.width + 'px';
+                        canvas.style.height = rect.height + 'px';
+                        const dpr = Math.max(window.devicePixelRatio, 2);
+                        canvas.width = rect.width * dpr;
+                        canvas.height = rect.height * dpr;
+
+                    }
+                    resizeCanvas();
+                    window.addEventListener('resize', resizeCanvas);
+
+                    // Fullscreen logic
+                    const fsButton = document.getElementById('fullscreen-button');
+                    const fsIcon = document.getElementById('fullscreen-icon');
+
+                    fsButton.addEventListener('click', () => {
+                        const container = canvas.parentElement;
+
+                        if (!document.fullscreenElement) {
+                            container.requestFullscreen();
+                            fsIcon.innerHTML = '<path d="m15 15 6 6m-6-6v4.8m0-4.8h4.8" /><path d="M9 19.8V15m0 0H4.2M9 15l-6 6" /><path d="M15 4.2V9m0 0h4.8M15 9l6-6" /><path d="M9 4.2V9m0 0H4.2M9 9 3 3" />';
+                        } else {
+                            document.exitFullscreen();
+                            fsIcon.innerHTML = '<path d="m15 15 6 6" /><path d="m15 9 6-6" /><path d="M21 16v5h-5" /><path d="M21 8V3h-5" /><path d="M3 16v5h5" /><path d="m3 21 6-6" /><path d="M3 8V3h5" /><path d="M9 9 3 3" />';
+
+                        }
+                    });
+                }).catch((error) => {
+                    window.parent.postMessage({ type: 'unity-error', error: error.message }, '*');
+                });
+            };
+
+            loaderScript.onerror = () => {
+                window.parent.postMessage({ type: 'unity-error', error: 'Failed to load loader script' }, '*');
+            };
+
+            document.head.appendChild(loaderScript);
+        }
+    </script>
+</body>
+
+</html>
