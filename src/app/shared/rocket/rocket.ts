@@ -1,9 +1,11 @@
-import { Component, ElementRef, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, AfterViewInit, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-rocket',
   templateUrl: './rocket.html',
-  styleUrls: ['./rocket.css']
+  styleUrls: ['./rocket.css'],
+  imports: [CommonModule]
 })
 export class Rocket implements AfterViewInit {
   @ViewChild('rocket') rocketElement!: ElementRef<HTMLDivElement>;
@@ -11,8 +13,13 @@ export class Rocket implements AfterViewInit {
   /** Inputs to toggle animations */
   @Input() enableBounce: boolean = true;
   @Input() enableExhaust: boolean = true;
+  @Input() scale: number = 1;
 
   ngAfterViewInit() {
+
+    // scaling the rocket
+    this.setScale(this.scale);
+
     // Apply initial animation classes based on inputs
     if (this.enableBounce) {
       this.rocketElement.nativeElement
@@ -27,5 +34,7 @@ export class Rocket implements AfterViewInit {
     }
   }
 
-
+  setScale(newScale: number) {
+    this.rocketElement.nativeElement.style.transform = `scale(${newScale})`;
+  }
 }
