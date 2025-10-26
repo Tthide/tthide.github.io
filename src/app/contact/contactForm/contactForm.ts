@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Rocket } from '../../shared/rocket/rocket';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contactForm.html',
+  styleUrls: ['./contactForm.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, Rocket],
 })
 export class ContactFormComponent {
+
+  @ViewChild(Rocket) rocket!: Rocket;
+
   contactForm: FormGroup;
 
   controlsValidity: { [key: string]: boolean } = {};
-  submittedOnce:boolean = false;
-  sendingMessage:boolean = false;
+  submittedOnce: boolean = false;
+  sendingMessage: boolean = false;
+  messageSent: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
@@ -28,7 +34,7 @@ export class ContactFormComponent {
 
   triggerErrorDisplay(controlName: string): boolean {
     const control = this.contactForm.get(controlName);
-    return !!(control && control.invalid && this.controlsValidity[controlName]&& (control.dirty || control.pristine|| control.touched));
+    return !!(control && control.invalid && this.controlsValidity[controlName] && (control.dirty || control.pristine || control.touched));
   }
 
   triggerShake(controlName: string) {
@@ -43,6 +49,26 @@ export class ContactFormComponent {
     }
   }
 
+  debugSend() {
+    this.submittedOnce = true;
+    this.sendingMessage = true;
+    console.log("debugSend sending")
+    setTimeout(() => {
+      this.messageSent = true;
+    }, 2000);
+  }
+
+  launchRocket(messageSent: boolean): string {
+    if (messageSent) return 'animate-launch';
+    return "";
+  }
+
+  onRocketLaunchEnd() {
+    //Resets properties when rocket launch animations ends
+    this.messageSent = false;
+    this.submittedOnce = false;
+    this.sendingMessage = false;
+  }
 
   onSubmit() {
     this.submittedOnce = true;
@@ -53,7 +79,7 @@ export class ContactFormComponent {
     }
 
     if (this.contactForm.valid) {
-      this.sendingMessage=true;
+      this.sendingMessage = true;
       const now = new Date();
       const datePipe = new DatePipe('en-US');
       const formattedTime = datePipe.transform(now, 'yyyy-MM-dd HH:mm:ss');
@@ -70,13 +96,12 @@ export class ContactFormComponent {
         .send('service_rs6300r', 'template_ksg5a0i', templateParams, 'cG_TAg_JcDAAzxOp-')
         .then(
           (result: EmailJSResponseStatus) => {
-            console.log(result.text);
-            alert('Message sent successfully!');
+            this.messageSent = true; //starts launch rocket animation in template
+            //alert('Message sent successfully!');
+
+            // reset 
             this.contactForm.reset();
-            // reset flags
-            this.submittedOnce = false;
             this.controlsValidity = {};
-            this.sendingMessage=false;
           },
           (error) => {
             console.error(error.text);
@@ -90,11 +115,8 @@ export class ContactFormComponent {
         this.controlsValidity[key] = !!control && control.invalid;
         if (control && control.invalid) {
           this.triggerShake(key);
-        } 
+        }
       });
-      //alert('Please fill out all fields correctly.');
     }
-
-
   }
 }

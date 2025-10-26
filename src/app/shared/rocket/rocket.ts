@@ -11,7 +11,6 @@ export class Rocket implements AfterViewInit {
   /** Inputs to toggle animations */
   @Input() enableBounce: boolean = true;
   @Input() enableExhaust: boolean = true;
-  @Input() enableLaunchAnimation: boolean = true;
 
   ngAfterViewInit() {
     // Apply initial animation classes based on inputs
@@ -28,14 +27,5 @@ export class Rocket implements AfterViewInit {
     }
   }
 
-  launchRocket() {
-    if (!this.enableLaunchAnimation) return;
 
-    const el = this.rocketElement.nativeElement;
-
-    // Remove and re-add the animation class for repeated launches
-    el.classList.remove('animate-launch');
-    void el.offsetWidth; // force reflow
-    el.classList.add('animate-launch');
-  }
 }
