@@ -49,15 +49,6 @@ export class ContactFormComponent {
     }
   }
 
-  debugSend() {
-    this.submittedOnce = true;
-    this.sendingMessage = true;
-    console.log("debugSend sending")
-    setTimeout(() => {
-      this.messageSent = true;
-    }, 2000);
-  }
-
   launchRocket(messageSent: boolean): string {
     if (messageSent) return 'animate-launch';
     return "";
@@ -119,4 +110,16 @@ export class ContactFormComponent {
       });
     }
   }
+
+  debugSendMessage() {
+    this.submittedOnce = true;
+    this.sendingMessage = true;
+    console.log("debugSend sending")
+    setTimeout(() => {
+      this.messageSent = true;
+    }, 2000);
+  }
 }
+
+
+

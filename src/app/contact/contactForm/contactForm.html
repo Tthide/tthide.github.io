@@ -1,8 +1,6 @@
 <div class=" grow mx-auto font-spartan text-xl">
 
-  @if (!sendingMessage)
-  {
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4" >
 
     <div class="grow flex flex-col gap-1">
       <label class="block  font-semibold" for="name">Name <span class="font-normal">(required)</span></label>
@@ -93,15 +91,20 @@
     </button>
 
   </form>
-  <button (click)="debugSend()"
+  <!-- Debug button for animation test
+  <button (click)="debugSendMessage()"
     class="w-full bg-accent_purple text-light font-semibold py-2 rounded-lg disabled:cursor-not-allowed enabled:hover:bg-white enabled:hover:outline enabled:hover:outline-2 enabled:hover:outline-accent_purple enabled:hover:text-accent_purple enabled:transition">
     Send debug
-  </button>}
-  @else {
-  <div aria-hidden="true"
-    class="relative flex min-h-[80svh] items-start justify-center bg-gradient-to-b from-accent_purple via-accent_blue to-light overflow-hidden"
-    animate.enter="enter-animation">
-    <div class=" bg-light/75 flex flex-row flex-shrink-0 min-w-max p-4 mt-5  font-konkhmer text-lg md:text-2xl text-center rounded-lg text-accent_purple">
+  </button>
+-->
+
+  <!-- Rocket animation on send-->
+  @if(sendingMessage) {
+  <div
+    class="fixed inset-0 flex items-start justify-center p-[8rem] lg:p-[12rem] bg-gradient-to-b from-accent_purple via-accent_blue to-light overflow-hidden"
+    animate.enter="enter-animation" animate.leave="leave-animation">
+    <div
+      class=" bg-light/85 z-50 flex flex-row flex-shrink-0 min-w-max p-2 md:p-6 mt-2 lg:mt-10 font-konkhmer text-lg md:text-2xl text-center rounded-full text-accent_purple">
       @if (!messageSent) {
 
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +118,7 @@
       { <span>Message Sent !</span>
       }
     </div>
-    <ul class="star absolute top-[30%] left-[50%] z-0">
+    <ul aria-hidden="true" class="star absolute top-[30%] left-[50%] z-0">
       <li></li>
       <li></li>
       <li></li>
@@ -125,8 +128,10 @@
       <li></li>
     </ul>
 
-    <app-rocket class="rocket absolute bottom-[50%] left-[50%] rotate-45 w-20" [enableBounce]="true"
-      [enableExhaust]="true" [ngClass]="launchRocket(messageSent)" (animationend)="onRocketLaunchEnd()">
+
+    <app-rocket aria-hidden="true" class="rocket absolute bottom-[50%] left-[50%] rotate-45 scale-[0.5] md:scale-100 xl:scale-[1.2]"
+      [enableBounce]="true" [enableExhaust]="true" [ngClass]="launchRocket(messageSent)"
+      (animationend)="onRocketLaunchEnd()">
     </app-rocket>
   </div>}
 </div>
