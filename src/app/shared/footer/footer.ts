@@ -17,8 +17,8 @@ export class FooterComponent {
   ];
 
   socialLinks = [
-    { href: 'https://www.linkedin.com/in/thibaultborde/', img: './InBug-White.png', alt: 'LinkedIn' },
-    { href: 'https://github.com/Tthide', img: './github-mark-white.png', alt: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/thibaultborde/', img: './InBug-White.webp', alt: 'LinkedIn' },
+    { href: 'https://github.com/Tthide', img: './github-mark-white.webp', alt: 'GitHub' },
   ];
 
   currentYear = new Date().getFullYear();
