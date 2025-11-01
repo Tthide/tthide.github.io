@@ -31,6 +31,16 @@ export class ProjectListComponent implements OnInit {
     return this.chipColors[index % this.chipColors.length];
   }
 
+  showLeftShadow = false;
+  showRightShadow = true; // initially true if scrollable
+
+  onScroll(event: Event) {
+    const target = event.target as HTMLElement;
+    const { scrollLeft, scrollWidth, clientWidth } = target;
+    this.showLeftShadow = scrollLeft > 10;
+    this.showRightShadow = scrollLeft + clientWidth < scrollWidth - 10;
+  }
+
   ngOnInit(): void {
     this.dataService.getProjects().subscribe(data => {
       this.projects = data.projects;

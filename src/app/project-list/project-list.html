@@ -38,13 +38,25 @@
             </p>
 
             <!-- Keywords Chips -->
-            <div class="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth py-1">
-                @for (keyword of project.content.info_card.key_words; track $index) {
-                <span
-                    class="inline-block text-white text-sm lg:text-base px-3 py-1 rounded-full shadow-sm hover:shadow-lg transition-all duration-200 {{ getChipColor($index) }}">
-                    {{ keyword }}
-                </span>
-                }
+            <div class="relative">
+                <!-- Scroll container -->
+                <div class="flex gap-2 overflow-x-auto whitespace-nowrap scroll-smooth py-1 scrollbar-hide px-2"
+                    (scroll)="onScroll($event)" #scrollContainer>
+                    @for (keyword of project.content.info_card.key_words; track $index) {
+                    <span
+                        class="inline-block text-white text-sm lg:text-base px-3 py-1 rounded-full shadow-sm hover:shadow-lg transition-all duration-200 {{ getChipColor($index) }}">
+                        {{ keyword }}
+                    </span>
+                    }
+                </div>
+
+                <!-- Left shadow -->
+                <div aria-hidden="true" class="xl:hidden pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-light to-transparent transition-opacity duration-100"
+                    [class.opacity-0]="!showLeftShadow" [class.opacity-100]="showLeftShadow"></div>
+
+                <!-- Right shadow -->
+                <div aria-hidden="true" class="xl:hidden pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-light to-transparent transition-opacity duration-100"
+                    [class.opacity-0]="!showRightShadow" [class.opacity-100]="showRightShadow"></div>
             </div>
 
 
