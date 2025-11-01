@@ -29,6 +29,7 @@ export interface ProcessStep {
     step_title: string;
     content:string;
     picture: Picture;
+    isFocused?: boolean;
 }
 
 export interface Process {
