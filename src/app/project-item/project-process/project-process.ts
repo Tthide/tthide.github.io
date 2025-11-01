@@ -33,13 +33,12 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
         clickable: true,
       },
       grabCursor: true,
-      effect: "creative",
       loop: false,
     });
 
 
     this.updateSlideStates(swiper, swiper.activeIndex);
-    swiper.on('activeIndexChange', () => {
+    swiper.on('slideChangeTransitionStart', () => {
       this.updateSlideStates(swiper, swiper.activeIndex);
     });
   }
@@ -51,9 +50,9 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     });
     
     // Wait for Angular to render changes, then recalc positions
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       swiper.update();
-    });
+    }, 10);
   }
 
 
