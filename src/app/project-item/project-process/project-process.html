@@ -1,20 +1,46 @@
-<h2 class="text-smooth_dark text-3xl md:text-4xl lg:text-5xl font-spartan">PROCESS</h2>
-<div class="flex flex-col gap-8 lg:gap-40">
-    @for (step of processStep; track $index; let idx = $index) {
-    <div class="flex flex-col gap-3">
-        <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">
-            Process Step {{ idx + 1 }} - {{ step.step_title }}
-        </h3>
-        <div class="project-content-rich-text" [innerHTML]="step.content"></div>
-        @if (step.picture) {
-        <img [src]="step.picture.url" [alt]="step.picture.alt" class="w-full max-h-[70svh] object-contain" />
-        @if(step.picture.source){
-        <p class="text-sm text-gray-500 mt-1">
-            {{ step.picture.source }}
-        </p>
-        }
-        }
-    </div>
-    }
+<section class="flex flex-col gap-8 lg:gap-30">
 
-</div>
+    <h2 class="text-smooth_dark text-3xl md:text-4xl lg:text-5xl font-spartan text-center">PROCESS</h2>
+
+    <!-- Swiper Container -->
+    <div class="swiper process-swiper w-full">
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-6">
+            <button
+                class="swiper-button-prev bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
+                aria-label="Previous process step">
+
+            </button>
+            <button
+                class="swiper-button-next bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
+                aria-label="Next process step">
+
+            </button>
+        </div>
+
+        <div class="swiper-wrapper">
+            @for (step of processStep; track $index; let idx = $index) {
+            <div class="swiper-slide flex flex-col gap-3 items-start">
+                <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">
+                    Process Step {{ idx + 1 }} – {{ step.step_title }}
+                </h3>
+
+                <div class="project-content-rich-text" [innerHTML]="step.content"></div>
+
+                @if (step.picture) {
+                <div class="w-full">
+                    <img [src]="step.picture.url" [alt]="step.picture.alt"
+                        class="w-full max-h-[70svh] object-contain rounded-2xl" />
+                    @if(step.picture.source){
+                    <p class="text-sm text-gray-500 mt-1">{{ step.picture.source }}</p>
+                    }
+                </div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="swiper-pagination mt-4"></div>
+    </div>
+</section>
