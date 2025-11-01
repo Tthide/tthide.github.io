@@ -13,7 +13,7 @@
                         "User Studies"
                     ],
                     "picture": {
-                        "url": "gallery/0/info_card_kiss.png",
+                        "url": "gallery/0/info_card_kiss.webp",
                         "alt": ""
                     }
                 },
@@ -46,7 +46,7 @@
                             "step_title": "Ideation: well... what do we build now? ⚟",
                             "content": "<p>One could say that there are countless forms of art, and while that is a beautiful sentiment, we couldn't find an idea that we liked that encompassed all forms of art (while still respecting the few limitations we had). We circled around ideas of community workshops with tutorials projected onto canvases or material to help people hone their crafts, or around a way to <em>\"geocache\"</em> artworks around the city for a gamified way for people to discover local artists.</p><p>Eventually, we came up with an idea of an interactive digital street signage installation that would display art to everyone passing by. People stopping at our installations could vote or give their opinion on the art and eventually buy merchandise to support the artist. You could in a way describe it as public art doomscrolling.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_3.png",
+                                "url": "gallery/0/KISS_step_3.webp",
                                 "alt": "Sketch of interactive digital street signage idea"
                             }
                         },
@@ -54,7 +54,7 @@
                             "step_title": "Ideation: Refining the idea ⚞",
                             "content": "<p>Now that we had an idea, or at least a direction to focus on, we needed to refine it. We gathered more information by preparing and conducting several design methods:</p><ul><li>First, we each conducted interviews with experts in different domains involved in our current idea. The goal was to identify potential challenges, gather intel about the feasibility of our concept, and evaluate it. For instance, I interviewed the CEO of a Slovakian Digital Signage company, from whom I learned several important difficulties behind public digital signage. With these interviews, we narrowed down our design by integrating the information we gathered.</li><li>Next, we prepared and handed out <em>Cultural Probes</em> to local inhabitants of Seestadt. This allowed us to present our idea to people who would be affected by it, gaining direct feedback, and to collect information about their behaviors, preferences, and habits regarding art, art rating, and Seestadt itself.</li><li>Lastly, we created a tabletop game mimicking the rating interactions we were considering. We hosted games with inhabitants of the neighborhood and observed their behaviors to understand how the rating system impacted their perception of the art.</li></ul><p>Through these methods, we learned a lot about people's preferences, especially their habits in the neighborhood and their preferred way of rating art. All of this helped develop our concept idea into the final form of this <strong>purely</strong> ideational first phase of the project.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_4.png",
+                                "url": "gallery/0/KISS_step_4.webp",
                                 "alt": "Cultural probes handed out to Seestadt inhabitants"
                             }
                         },
@@ -62,7 +62,7 @@
                             "step_title": "Prototyping: Tuning the idea... ⚟",
                             "content": "<p>We had a concrete, solid idea at the end of the ideation phase. However, we realized that our concept wasn't tangible enough, and the interactions lacked memorability. We went back to the drawing board, sketching interaction ideas while maintaining the core concept of a free little library with visual local art display and rating possibilities.</p><p>We developed the idea of 'special books' onto which local art would be projected. An additional tool or object could serve as a controller to enable further interactions. We considered pens (visually or magnetically tracked), ropes and pulleys, and finally decided on a hand-sized cube or dice to enable interactions.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_5.png",
+                                "url": "gallery/0/KISS_step_5.webp",
                                 "alt": "Sketches of special books and interaction ideas"
                             }
                         },
@@ -70,7 +70,7 @@
                             "step_title": "Prototyping: Last checks before takeoff ⚞",
                             "content": "<p>The interactions worked as follows:</p><ul><li>Users first selected a special book (each book corresponding to different art collections). Placing it in the projection area allowed them to flip through the artworks. The books were otherwise blank, meaning they couldn't be used outside the system.</li><li>Users could rotate the control dice to select options for the current artwork projected onto the book. Each face of the cube enabled a different interaction, for a total of six options, such as revealing more information, rating the artwork, or expressing feelings along an emotions circle.</li></ul><p>To refine the idea, we created a physical mock-up and a digital wireframe. Student testers highlighted issues like ergonomics (books needed to be readable and comfortable) and interaction clarity (special books and cubes are uncommon items). The tests also confirmed the concept's interestingness and that we were moving in the right direction.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_6.png",
+                                "url": "gallery/0/KISS_step_6.webp",
                                 "alt": "Mockup and wireframe screenshots of the special books and cube interactions"
                             }
                         },
@@ -78,7 +78,7 @@
                             "step_title": "Prototyping: What would it look like? How do we make it work? ⚞",
                             "content": "<p>With the UX approach confirmed, we worked on both visual design (UI and business identity) and technical implementation. Using a mobile phone, projector, 3D-printed cube, and QR-code stickers, we developed a Kotlin app displaying different screens based on the QR codes on books or cubes. The phone projected these screens onto the books.</p><p>I handled business identity and visuals. We named the project “Kunstbibliothek in SeeStadt” (KISS), reflecting the product and location, and making a memorable acronym.</p><p>The logo uses the acronym KISS:</p><ul><li>K: an open book, symbolizing both libraries and art experience.</li><li>I: a brush, representing art; a drop of paint flows into the first S.</li><li>SS: fluid letters symbolizing Seestadt lake and unrestrained art; identical letters ensure readability.</li></ul><p>The logo has a blue gradient referencing Seestadt lake, introducing movement and evoking trust and confidence for collaborating artists.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_7.png",
+                                "url": "gallery/0/KISS_step_7.webp",
                                 "alt": "Evolution of the KISS logo and 3D model concept"
                             }
                         },
@@ -86,7 +86,7 @@
                             "step_title": "Prototyping: Building the prototype ⚞",
                             "content": "<p>We built a high-fidelity prototype. No suitable shelf existed, so we made one ourselves. Using laser-cut wood for eco-friendliness and transportability, we customized premium notebooks as 'special books', each color-coded for differentiation. The interactive cube was 3D printed in blue and decorated with decal stickers for interaction symbols.</p><p>The shelf exterior was painted white with blue marks; the interior projection area was dark to improve projection quality. The phone and projector were hidden at the top. Additional promotional materials like posters and flyers were designed to attract participants.</p>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_8.png",
+                                "url": "gallery/0/KISS_step_8.webp",
                                 "alt": "Final prototype with shelf, books, and promotional poster"
                             }
                         },
@@ -94,7 +94,7 @@
                             "step_title": "Prototyping: Testing the prototype ⚞",
                             "content": "<p>The final stage involved testing our prototype in Seestadt near a supermarket. We successfully attracted participants.</p><p>We used a <a href=\"https://en.wikipedia.org/wiki/Think_aloud_protocol\">Think-Aloud Protocol</a>:</p><ul><li>Introduce the system, its purpose, and interactions.</li><li>Participants interact with the system, verbalizing their thoughts.</li><li>Observers intervene only if the participant is stuck or misses a key feature.</li><li>After several minutes, participants are asked about their experience and opinions on KISS.</li><li>Notes and anonymous recordings were taken throughout.</li></ul>",
                             "picture": {
-                                "url": "gallery/0/KISS_step_9.png",
+                                "url": "gallery/0/KISS_step_9.webp",
                                 "alt": "Prototype being tested in Seestadt with participants"
                             }
                         }
@@ -119,7 +119,7 @@
                         "Strategy"
                     ],
                     "picture": {
-                        "url": "gallery/1/Node_wars_main_picture.png",
+                        "url": "gallery/1/Node_wars_main_picture.webp",
                         "alt": "Node Wars gameplay preview"
                     },
                     "hasGame": true
@@ -137,7 +137,7 @@
                             "step_title": "Initial Game Idea",
                             "content": "<p>The very first version of <strong>Node Wars</strong> was not space-themed at all. Instead, it started as a purely abstract strategy game where the focus was entirely on mechanics. The playing field was designed as a collection of interconnected circles, each divided into multiple sections. Players would take turns coloring these sections with their chosen color.</p><p>The core rule of the game was simple: a player could color a section only if the circle was unclaimed or if they already controlled at least one section of it. Once all sections of a circle were filled by the same player, the circle was considered conquered. At that moment, a key mechanic, <em>propagation</em>, would be triggered: the player’s color spread into all directly connected circles. This propagation not only added a new colored section to neutral circles, but also replaced any sections already controlled by opponents, creating sudden and dramatic shifts in control.</p><p>This mechanic encouraged players to think several steps ahead. Choosing the right circle to conquer could cause chain reactions that flipped entire regions of the board, while a poorly timed move could set up an opponent for a devastating blow. Even without a theme, this early prototype already demonstrated the potential for deep strategy arising from very simple rules.</p><p>At this stage, the game was entirely about testing, refining, and balancing these mechanics. The thematic layer, civilizations battling for galactic dominance, was added later, but the abstract strategy roots remain at the heart of <strong>Node Wars</strong>.</p>",
                             "picture": {
-                                "url": "gallery/1/Node_wars_early_sketches.png",
+                                "url": "gallery/1/Node_wars_early_sketches.webp",
                                 "alt": "Early Sketches of our game mechanic."
                             }
                         },
@@ -145,7 +145,7 @@
                             "step_title": "Adding a Theme",
                             "content": "<p>Eventually, to make the game more compelling to play and to deepen the overall experience, we needed to add a cosmetic layer to it. A good way to achieve this was by choosing a theme for the game. A theme is one of the most obvious and visible aspects of a game, as it defines its visual identity and gives players a recognizable context to engage with.</p><p>In regard to the <strong>MDA (Mechanic-Dynamic-Aesthetic)</strong> framework, we already had the mechanics in place. Adding a theme to the game mostly impacts the aesthetic layer, rather than the core mechanics or dynamics. Therefore, many different topics could have worked with our core mechanic, especially given its network and graph-theory foundation, which lends itself to a wide range of domains.</p><p>The idea of space as a theme came naturally. When I was younger, I played <a href='https://en.wikipedia.org/wiki/Star_Wars:_Battlefront_II_(2005_video_game)' target='_blank'> <em>Star Wars Battlefront 2 (2005)</em></a> on the PS2, which included a Galactic Conquest mode. In that mode, the player faced an opponent for galactic domination on a node-based map of star systems, with battles fought to determine the winner. More recently, I had played <a href='https://steamcommunity.com/sharedfiles/filedetails/?id=3091432977' target='_blank'>community mods for <em>Hearts of Iron 4</em></a> that recreated the <em>Star Wars</em> universe, allowing players to immerse themselves in familiar factions and stories. These experiences made the space theme feel like a natural fit, both visually and mechanically, for the game.</p>",
                             "picture": {
-                                "url": "gallery/1/star_wars_theme.png",
+                                "url": "gallery/1/star_wars_theme.webp",
                                 "alt": "Screenshots of the galactic conquest game mode of Star Wars Battlefront 2 (2005) and of the Star Wars: PROJECT VALACHORD mod for Hearts of Iron 4",
                                 "source": "Sources: ModDB (SWSaga images), Steam Workshop (Hearts of Iron4 — Star Wars: PROJECT VALACHORD)"
                             }
@@ -154,7 +154,7 @@
                             "step_title": "First Version of the Game",
                             "content": "<p>The core version of <strong>Node Wars</strong> was developed in less than a month. Once the basic mechanics were in place, we focused on small quality-of-life updates and bug fixes to make the experience more polished and stable.</p><p>After reaching a playable prototype, we organized testing sessions with other players to gather early feedback. The game quickly became one of the favorites among those presented, with testers praising its strategic aspect, and the excitement of the propagation mechanic. Players found the chain-reaction system particularly satisfying, as it created unexpected yet logical swings in control.</p><p>However, the tests also revealed key areas for improvement. Some first-time players struggled to understand how propagation worked without explicit guidance. In addition, the initial map layout appeared slightly unbalanced, with the first player sometimes having a noticeable advantage. These insights helped define our next steps: improving onboarding, balancing gameplay, and finding ways to add more strategic depth.</p>",
                             "picture": {
-                                "url": "gallery/1/Node_wars_v1.png",
+                                "url": "gallery/1/Node_wars_v1.webp",
                                 "alt": "Screenshots of the first version of Node Wars during testing sessions"
                             }
                         },
@@ -162,13 +162,13 @@
                             "step_title": "Layering the Game",
                             "content": "<p>At this stage, the game revolved around a single objective, conquering the opponent and eliminating them from the board. While this worked well mechanically, it made the experience feel somewhat one-dimensional. Players had limited strategic options and tended to adopt similar approaches each match.</p><p>To address this, we introduced additional winning conditions designed to diversify gameplay and encourage players to think on multiple levels. The goal was to let players pursue different paths to victory and manage various aspects of the game simultaneously, leading to richer strategic decisions.</p><p><strong>The final three victory conditions were:</strong></p><ul><li><strong>Domination Victory:</strong> Eliminate the other player by taking over all of their nodes using explosions.</li><li><strong>Path Victory:</strong> Be the first to move your UFO from the starting planet to the destination planet. Move the UFO by fully coloring the current planet of the path.</li><li><strong>Control Victory:</strong> Fully occupy the king planet with your color for as many turns in a row as indicated.</li></ul><p>These new objectives gave players freedom to adapt their strategies, focusing on aggressive expansion, tactical movement, or strategic control, making each match more varied and engaging.</p>",
                             "picture": {
-                                "url": "gallery/1/Node_wars_alt_win_conditions.png",
+                                "url": "gallery/1/Node_wars_alt_win_conditions.webp",
                                 "alt": "Screenshots of the second version of Node Wars showcasing multiple winning conditions"
                             }
                         },
                         {
                             "step_title": "Quality of Life (QOL) Updates",
-                            "content": "<p>Following the gameplay improvements, we focused on intuitiveness and user experience. A series of quality-of-life updates were implemented to make the game easier to understand, smoother to play, and more visually engaging.</p><p><strong>Key improvements included:</strong></p><ul><li>A tutorial system to help first-time players grasp the propagation mechanic and overall game flow.</li><li>A game mode selection menu allowing players to switch between different configurations and objectives.</li><li>Enhanced visuals and animations that provided better feedback on player actions, making outcomes clearer and the game more intuitive to read.</li></ul><p>These improvements made <strong>Node Wars</strong> more polished, approachable, and enjoyable, particularly for new players discovering the game for the first time.</p><p><em>Include pictures of tutorial screens.</em></p>",
+                            "content": "<p>Following the gameplay improvements, we focused on intuitiveness and user experience. A series of quality-of-life updates were implemented to make the game easier to understand, smoother to play, and more visually engaging.</p><p><strong>Key improvements included:</strong></p><ul><li>A tutorial system to help first-time players grasp the propagation mechanic and overall game flow.</li><li>A game mode selection menu allowing players to switch between different configurations and objectives.</li><li>Enhanced visuals and animations that provided better feedback on player actions, making outcomes clearer and the game more intuitive to read.</li></ul><p>These improvements made <strong>Node Wars</strong> more polished, approachable, and enjoyable, particularly for new players discovering the game for the first time.</p>",
                             "picture": {
                                 "url": "gallery/1/Node_wars_tutorial.gif",
                                 "alt": "Screenshots of the Node Wars tutorial and interface updates"
