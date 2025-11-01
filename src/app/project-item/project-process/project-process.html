@@ -7,23 +7,23 @@
 
         <div class="swiper-wrapper items-end">
             @for (step of processStep; track $index; let idx = $index) {
-            <div class="swiper-slide flex flex-col gap-3 overflow-y-auto bg-light rounded-2xl transition"
+            <div class="swiper-slide flex flex-col gap-1 lg:gap-3 overflow-y-auto bg-light rounded-2xl transition p-4 xl:p-6"
                 [ngClass]="{
-    'w-2/3 h-[100%] z-10': step.isFocused,
+    'w-[80%] md:w-2/3 h-[100%] z-10': step.isFocused,
     'w-1/4 h-1/4 opacity-70 items-center justify-center': !step.isFocused
   }">
 
                 <!-- Card Header -->
-                <h3 class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-accent_purple text-xl md:text-2xltransition"
-                    [ngClass]="{
-    'text-xl': step.isFocused,
-    'text-3xl': !step.isFocused
-  }">
-                    Step {{ idx + 1 }} – {{ step.step_title }}
+                <h3 class="w-full flex justify-between items-center">
+                    <span class= "max-w-full text-accent_purple font-bold " [ngClass]="{
+      'md:text-lg text-xl': step.isFocused,
+      'md:text-base lg:text-2xl truncate lg:whitespace-normal text-ellipsis': !step.isFocused
+    }">
+                        Step {{ idx + 1 }} – {{ step.step_title }} </span>
                 </h3>
                 <!-- Card Content (Collapsible) -->
-                <div class="px-6 pb-6 transition-all duration-300" [class.hidden]="!step.isFocused">
-                    <div class="project-content-rich-text mb-4" [innerHTML]="step.content"></div>
+                <div class="transition-all duration-300" [class.hidden]="!step.isFocused">
+                    <div class="project-content-rich-text" [innerHTML]="step.content"></div>
 
                     @if (step.picture) {
                     <div class="w-full">

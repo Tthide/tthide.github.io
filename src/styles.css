@@ -7,7 +7,7 @@
 
 
 .project-content-rich-text {
-  @apply prose max-w-none w-full text-smooth_dark text-base sm:text-lg md:text-xl font-spartan;
+  @apply prose max-w-none w-full text-smooth_dark text-base sm:text-sm md:text-base lg:text-xl font-spartan;
 
 }
 
@@ -17,7 +17,7 @@
 }
 
 .project-content-rich-text a {
-  @apply prose max-w-none w-full text-accent_purple text-base font-semibold sm:text-lg md:text-xl font-spartan;
+  @apply prose max-w-none w-full text-accent_purple text-base font-semibold sm:text-sm md:text-base lg:text-xl font-spartan;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
