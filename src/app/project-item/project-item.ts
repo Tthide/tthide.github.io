@@ -5,10 +5,11 @@ import { Observable, Subscription, defer } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 import { RotatingTextIconComponent } from "../shared/rotating-text-icon/rotating-text-icon";
 import { AsyncPipe } from "@angular/common";
+import { ProjectProcessComponent } from "./project-process/project-process";
 
 @Component({
   selector: "app-project-item",
-  imports: [RotatingTextIconComponent, AsyncPipe],
+  imports: [RotatingTextIconComponent, AsyncPipe,ProjectProcessComponent],
   templateUrl: "./project-item.html",
   standalone: true,
   styleUrl: "./project-item.css"
