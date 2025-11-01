@@ -16,8 +16,8 @@
                 <!-- Card Header -->
                 <h3 class="w-full flex justify-between items-center">
                     <span class= "max-w-full text-accent_purple font-bold " [ngClass]="{
-      'md:text-lg text-xl': step.isFocused,
-      'md:text-base lg:text-2xl truncate lg:whitespace-normal text-ellipsis': !step.isFocused
+      'text-lg md:text-xl lg:text-3xl xl:text-4xl': step.isFocused,
+      'text-base lg:text-2xl truncate lg:whitespace-normal text-ellipsis': !step.isFocused
     }">
                         Step {{ idx + 1 }} – {{ step.step_title }} </span>
                 </h3>
@@ -26,7 +26,7 @@
                     <div class="project-content-rich-text" [innerHTML]="step.content"></div>
 
                     @if (step.picture) {
-                    <div class="w-full">
+                    <div class="w-full mt-2">
                         <img [src]="step.picture.url" [alt]="step.picture.alt"
                             class="w-full max-h-[50vh] object-contain rounded-xl mb-2" />
                         @if(step.picture.source){
