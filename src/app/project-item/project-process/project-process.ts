@@ -22,7 +22,7 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
       slidesPerView: "auto",
       centeredSlides: true,
       initialSlide: 0,
-      spaceBetween: 30,
+      spaceBetween: 40,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -38,19 +38,24 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     });
 
 
-    this.updateSlideStates(swiper.activeIndex);
-
-    swiper.on('slideChange', () => {
-      this.updateSlideStates(swiper.activeIndex);
+    this.updateSlideStates(swiper, swiper.activeIndex);
+    swiper.on('activeIndexChange', () => {
+      this.updateSlideStates(swiper, swiper.activeIndex);
     });
   }
 
   // Update slides' focus/size/content collapse
-  updateSlideStates(activeIndex: number) {
+  updateSlideStates(swiper: Swiper, activeIndex: number) {
     this.processStep.forEach((step, idx) => {
       step.isFocused = idx === activeIndex;
     });
+    
+    // Wait for Angular to render changes, then recalc positions
+    requestAnimationFrame(() => {
+      swiper.update();
+    });
   }
+
 
 
 }

@@ -7,10 +7,10 @@
 
         <div class="swiper-wrapper items-end">
             @for (step of processStep; track $index; let idx = $index) {
-            <div class="swiper-slide w-1/3 h-1/3 flex flex-col gap-3 overflow-y-auto bg-light rounded-2xl transition"
+            <div class="swiper-slide flex flex-col gap-3 overflow-y-auto bg-light rounded-2xl transition"
                 [ngClass]="{
     'w-2/3 h-[100%] z-10': step.isFocused,
-    'scale-90 opacity-70 items-center justify-center': !step.isFocused
+    'w-1/4 h-1/4 opacity-70 items-center justify-center': !step.isFocused
   }">
 
                 <!-- Card Header -->
