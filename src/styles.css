@@ -29,7 +29,7 @@
 }
 
 .project-content-rich-text a {
-  @apply flex flex-col gap-3 md:gap-5 lg:gap-10 max-w-none w-full text-accent_purple text-base font-semibold sm:text-sm md:text-base lg:text-xl font-spartan;
+  @apply  text-accent_purple text-base underline font-semibold sm:text-sm md:text-base lg:text-xl font-spartan;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
