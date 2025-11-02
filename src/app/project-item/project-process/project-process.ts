@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ProcessStep } from '../../services/data.service';
 import { Swiper } from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class ProjectProcessComponent implements AfterViewInit, OnInit {
   @Input() processStep: Array<ProcessStep> = [];
   private swiper?: Swiper;
+
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.processStep.forEach(step => step.isFocused = false);
@@ -44,6 +46,7 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     this.swiper.on('slideChangeTransitionStart', () => {
       if (this.swiper) {
         this.updateSlideStates(this.swiper.activeIndex);
+        
       }
     });
   }
@@ -57,6 +60,7 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
   updateSlideStates(activeIndex: number) {
     this.processStep.forEach((step, idx) => {
       step.isFocused = idx === activeIndex;
+      this.updateSlideLinks(idx, step.isFocused);
     });
 
     // Immediately trigger Swiper re-center and update
@@ -81,5 +85,25 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
       return { 'transform': 'scaleX(0.345)', 'transform-origin': 'top left', 'min-width': '290%' };
     }
 
+  }
+
+  /** 
+   * Dynamically set tabindex for links inside slides based on focus state
+   */
+  private updateSlideLinks(idx: number, isFocused: boolean) {
+    const slideEl: HTMLElement | null = this.elementRef.nativeElement.querySelectorAll('.swiper-slide')[idx];
+    if (!slideEl) return;
+
+    const focusableLinks: NodeListOf<HTMLAnchorElement> = slideEl.querySelectorAll('a');
+    focusableLinks.forEach(link => {
+      link.tabIndex = isFocused ? 0 : -1;
+
+      
+      if (link.href.startsWith('http')) {
+        link.setAttribute('aria-label', `${link.textContent?.trim()} (opens external website)`);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
   }
 }

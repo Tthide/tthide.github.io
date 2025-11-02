@@ -5,20 +5,19 @@
 
         <div class="swiper-wrapper items-end">
             @for (step of processStep; track $index; let idx = $index) {
-            <div class="swiper-slide w-[30%] h-[100%]" [ngClass]="{
+            <div class="swiper-slide w-[30%] h-[100%]" [id]="'step-' + idx" [ngClass]="{
                     'z-20': step.isFocused,
                     'z-0': !step.isFocused
-                }" 
-                (click)="navigateToSlide(idx)">
+                }" (click)="navigateToSlide(idx)" tabindex="-1">
                 <!-- Outer wrapper that scales (boundaries only) -->
                 <div class="slide-outer w-full h-1/4 !max-h-full flex bg-light rounded-lg transition-all duration-500 origin-top overflow-x-hidden overflow-y-auto"
                     [ngClass]="{
                         '!h-[90%] scale-x-[2.90] lg:scale-x-[2.50] xl:scale-x-[2] opacity-100': step.isFocused,
                         'scale-100 opacity-70 items-center': !step.isFocused
-                    }">
+                    }" tabindex="-1">
                     <!-- Inner content -->
                     <div class="slide-inner h-full flex flex-col gap-1 lg:gap-3 overflow-y-auto p-4 xl:p-6 transition-all duration-500 transform origin-top-left"
-                        [ngStyle]="getInnerTransform(step.isFocused)">
+                        [ngStyle]="getInnerTransform(step.isFocused)" tabindex="-1">
                         <!-- Card Header -->
                         <h3 class="w-full flex justify-between items-center">
                             <span
@@ -35,7 +34,8 @@
                                  'opacity-100 max-h-[1000px]': step.isFocused,
                                  'opacity-0 max-h-0 overflow-hidden': !step.isFocused
                              }">
-                            <div class="project-content-rich-text" [innerHTML]="step.content"></div>
+                            <div class="project-content-rich-text" [innerHTML]="step.content" tabindex="-1"></div>
+
                             @if (step.picture) {
                             <div class="w-full mt-2">
                                 <img [src]="step.picture.url" [alt]="step.picture.alt"
@@ -55,11 +55,11 @@
         <div class="flex justify-between mt-6">
             <button
                 class="swiper-button-prev bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
-                aria-label="Previous process step">
+                aria-label="Previous process step" tabindex="0">
             </button>
             <button
                 class="swiper-button-next bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
-                aria-label="Next process step">
+                aria-label="Next process step" tabindex="0">
             </button>
         </div>
         <!-- Pagination-->
