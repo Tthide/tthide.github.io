@@ -1,41 +1,53 @@
 <section class="flex flex-col gap-8 lg:gap-30">
-
     <h2 class="text-smooth_dark text-3xl md:text-4xl lg:text-5xl font-spartan text-center">PROCESS</h2>
-
     <!-- Swiper Container -->
     <div class="swiper process-swiper h-[70svh] w-full bg-accent_blue/80 p-5 rounded-2xl">
 
         <div class="swiper-wrapper items-end">
             @for (step of processStep; track $index; let idx = $index) {
-            <div class="swiper-slide flex flex-col gap-1 lg:gap-3 overflow-y-auto bg-light rounded-2xl transition p-4 xl:p-6"
-                [ngClass]="{
-    'w-[80%] md:w-2/3 h-[100%] z-10': step.isFocused,
-    'w-1/4 h-1/4 opacity-70 items-center justify-center': !step.isFocused
-  }">
-
-                <!-- Card Header -->
-                <h3 class="w-full flex justify-between items-center">
-                    <span class= "max-w-full text-accent_purple font-bold " [ngClass]="{
-      'text-lg md:text-xl lg:text-3xl xl:text-4xl': step.isFocused,
-      'text-base lg:text-2xl truncate lg:whitespace-normal text-ellipsis': !step.isFocused
-    }">
-                        Step {{ idx + 1 }} – {{ step.step_title }} </span>
-                </h3>
-                <!-- Card Content (Collapsible) -->
-                <div class="transition-all duration-300" [class.hidden]="!step.isFocused">
-                    <div class="project-content-rich-text" [innerHTML]="step.content"></div>
-
-                    @if (step.picture) {
-                    <div class="w-full mt-2">
-                        <img [src]="step.picture.url" [alt]="step.picture.alt"
-                            class="w-full max-h-[50vh] object-contain rounded-xl mb-2" />
-                        @if(step.picture.source){
-                        <p class="text-sm text-gray-500 mt-1">{{ step.picture.source }}</p>
-                        }
+            <div class="swiper-slide w-[30%] h-[100%]" [ngClass]="{
+                    'z-20': step.isFocused,
+                    'z-0': !step.isFocused
+                }" 
+                (click)="navigateToSlide(idx)">
+                <!-- Outer wrapper that scales (boundaries only) -->
+                <div class="slide-outer w-full h-1/4 !max-h-full flex bg-light transition-all duration-500 origin-top overflow-x-hidden overflow-y-auto"
+                    [ngClass]="{
+                        '!h-[90%] scale-x-[2.90] lg:scale-x-[2.50] xl:scale-x-[2] opacity-100 rounded-2xl': step.isFocused,
+                        'scale-100 opacity-70 rounded-2xl items-center': !step.isFocused
+                    }">
+                    <!-- Inner content -->
+                    <div class="slide-inner h-full flex flex-col gap-1 lg:gap-3 overflow-y-auto overflow-x-hidden p-4 xl:p-6 transition-all duration-500 transform origin-top-left"
+                        [ngStyle]="getInnerTransform(step.isFocused)">
+                        <!-- Card Header -->
+                        <h3 class="w-full flex justify-between items-center">
+                            <span
+                                class="max-w-full text-accent_purple font-bold text-lg md:text-xl lg:text-3xl xl:text-4xl"
+                                [ngClass]="{
+                                    'line-clamp-none': step.isFocused,
+                                    'line-clamp-2': !step.isFocused
+                                }">
+                                Step {{ idx + 1 }} – {{ step.step_title }}
+                            </span>
+                        </h3>
+                        <!-- Card Content (Collapsible) -->
+                        <div class="transition-all duration-500" [ngClass]="{
+                                 'opacity-100 max-h-[1000px]': step.isFocused,
+                                 'opacity-0 max-h-0 overflow-hidden': !step.isFocused
+                             }">
+                            <div class="project-content-rich-text" [innerHTML]="step.content"></div>
+                            @if (step.picture) {
+                            <div class="w-full mt-2">
+                                <img [src]="step.picture.url" [alt]="step.picture.alt"
+                                    class="w-full max-h-[50vh] object-contain rounded-xl mb-2" />
+                                @if(step.picture.source){
+                                <p class="text-sm text-gray-500 mt-1">{{ step.picture.source }}</p>
+                                }
+                            </div>
+                            }
+                        </div>
                     </div>
-                    }
                 </div>
-
             </div>
             }
         </div>
@@ -44,12 +56,10 @@
             <button
                 class="swiper-button-prev bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
                 aria-label="Previous process step">
-
             </button>
             <button
                 class="swiper-button-next bg-smooth_dark text-white rounded-full p-3 hover:bg-accent_purple transition"
                 aria-label="Next process step">
-
             </button>
         </div>
         <!-- Pagination-->
