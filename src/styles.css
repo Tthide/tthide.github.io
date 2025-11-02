@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .project-content-rich-text {
   @apply flex flex-col gap-3 md:gap-5 lg:gap-10 max-w-none w-full text-smooth_dark text-base sm:text-sm md:text-base lg:text-xl font-spartan;

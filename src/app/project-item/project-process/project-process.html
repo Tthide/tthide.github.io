@@ -2,7 +2,8 @@
     <h2 class="text-smooth_dark text-3xl md:text-4xl lg:text-5xl font-spartan text-center">PROCESS</h2>
     <!-- Swiper Container -->
     <div class="swiper process-swiper h-[70svh] w-full bg-accent_blue/80 p-5 rounded-2xl">
-
+        <!-- ARIA live region for screen readers -->
+        <div id="slide-announcer" class="sr-only" aria-live="polite"></div>
         <div class="swiper-wrapper items-end">
             @for (step of processStep; track $index; let idx = $index) {
             <div class="swiper-slide w-[30%] h-[100%]" [id]="'step-' + idx" [ngClass]="{

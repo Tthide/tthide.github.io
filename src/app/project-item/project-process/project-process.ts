@@ -46,7 +46,7 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     this.swiper.on('slideChangeTransitionStart', () => {
       if (this.swiper) {
         this.updateSlideStates(this.swiper.activeIndex);
-        
+
       }
     });
   }
@@ -64,11 +64,15 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     });
 
     // Immediately trigger Swiper re-center and update
-    if (this.swiper) {
-      // Update layout so Swiper recalculates dimensions while the focus animation runs
-      this.swiper.update();
-
+    if (this.swiper) this.swiper.update();
+    
+    // Update ARIA live region
+    const announcer = this.elementRef.nativeElement.querySelector('#slide-announcer');
+    if (announcer) {
+      const currentSlide = this.processStep[activeIndex];
+      announcer.textContent = `Slide ${activeIndex + 1}: ${currentSlide.step_title}`;
     }
+
   }
 
   getInnerTransform(isFocused?: boolean) {
@@ -98,7 +102,7 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
     focusableLinks.forEach(link => {
       link.tabIndex = isFocused ? 0 : -1;
 
-      
+
       if (link.href.startsWith('http')) {
         link.setAttribute('aria-label', `${link.textContent?.trim()} (opens external website)`);
         link.setAttribute('target', '_blank');
