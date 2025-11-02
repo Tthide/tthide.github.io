@@ -11,13 +11,13 @@
                 }" 
                 (click)="navigateToSlide(idx)">
                 <!-- Outer wrapper that scales (boundaries only) -->
-                <div class="slide-outer w-full h-1/4 !max-h-full flex bg-light transition-all duration-500 origin-top overflow-x-hidden overflow-y-auto"
+                <div class="slide-outer w-full h-1/4 !max-h-full flex bg-light rounded-lg transition-all duration-500 origin-top overflow-x-hidden overflow-y-auto"
                     [ngClass]="{
-                        '!h-[90%] scale-x-[2.90] lg:scale-x-[2.50] xl:scale-x-[2] opacity-100 rounded-2xl': step.isFocused,
-                        'scale-100 opacity-70 rounded-2xl items-center': !step.isFocused
+                        '!h-[90%] scale-x-[2.90] lg:scale-x-[2.50] xl:scale-x-[2] opacity-100': step.isFocused,
+                        'scale-100 opacity-70 items-center': !step.isFocused
                     }">
                     <!-- Inner content -->
-                    <div class="slide-inner h-full flex flex-col gap-1 lg:gap-3 overflow-y-auto overflow-x-hidden p-4 xl:p-6 transition-all duration-500 transform origin-top-left"
+                    <div class="slide-inner h-full flex flex-col gap-1 lg:gap-3 overflow-y-auto p-4 xl:p-6 transition-all duration-500 transform origin-top-left"
                         [ngStyle]="getInnerTransform(step.isFocused)">
                         <!-- Card Header -->
                         <h3 class="w-full flex justify-between items-center">
