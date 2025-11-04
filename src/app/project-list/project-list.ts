@@ -86,7 +86,7 @@ export class ProjectListComponent implements AfterViewInit, OnInit {
 
       this.projects.forEach((_, index) => {
         this.showLeftShadow[index] = false;
-        this.showRightShadow[index] = true;
+        this.showRightShadow[index] = false;
       });
     });
   }
