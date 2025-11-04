@@ -11,7 +11,7 @@
             <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center ">
                 @if (project.content.info_card.picture.url) {
                 <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
-                    class="w-full h-full object-contain" />
+                    class="w-full h-full object-cover" />
                 }
                 @else {
                 <span class="text-smooth_dark text-lg sm:text-xl font-spartan text-center">
@@ -38,17 +38,26 @@
             </p>
 
             <!-- Keywords Chips -->
-            <div class="swiper chips-swiper relative overflow-hidden">
-                <div class="swiper-wrapper">
-                    @for (keyword of project.content.info_card.key_words; track $index) {
-                    <div
-                        class="swiper-slide !w-auto text-white text-sm lg:text-base px-3 py-1 rounded-full {{ getChipColor($index) }}">
-                        {{ keyword }}
+            <div class="relative">
+                <!-- Left shadow -->
+                <div aria-hidden="true"
+                    class=" pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-smooth_dark/30 to-transparent transition-opacity duration-100 z-10"
+                    [class.opacity-0]="!showLeftShadow[$index]" [class.opacity-100]="showLeftShadow[$index]"></div>
+                <!-- Right shadow -->
+                <div aria-hidden="true"
+                    class= "pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-smooth_dark/30 to-transparent transition-opacity duration-100 z-10"
+                    [class.opacity-0]="!showRightShadow[$index]" [class.opacity-100]="showRightShadow[$index]"></div>
+                <div class="swiper chips-swiper relative overflow-hidden" [attr.data-index]="$index">
+                    <div class="swiper-wrapper">
+                        @for (keyword of project.content.info_card.key_words; track $index) {
+                        <div
+                            class="swiper-slide !w-auto text-white text-sm lg:text-base px-3 py-1 rounded-full {{ getChipColor($index) }}">
+                            {{ keyword }}
+                        </div>
+                        }
                     </div>
-                    }
                 </div>
             </div>
-
 
             <!-- Read More Button -->
             <a [routerLink]="['/project', project.id]"
