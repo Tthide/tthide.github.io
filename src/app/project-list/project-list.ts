@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataService, Project } from '../services/data.service';
+import { Swiper } from 'swiper';
+import { FreeMode } from 'swiper/modules';
 
 @Component({
   selector: 'app-project-list',
@@ -12,7 +14,7 @@ import { DataService, Project } from '../services/data.service';
     'class': 'w-full flex flex-col items-center gap-10 block'
   }
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements AfterViewInit, OnInit {
   projects: Project[] = [];
 
   constructor(private dataService: DataService) { }
@@ -31,15 +33,27 @@ export class ProjectListComponent implements OnInit {
     return this.chipColors[index % this.chipColors.length];
   }
 
-  showLeftShadow = false;
-  showRightShadow = true; // initially true if scrollable
 
-  onScroll(event: Event) {
-    const target = event.target as HTMLElement;
-    const { scrollLeft, scrollWidth, clientWidth } = target;
-    this.showLeftShadow = scrollLeft > 10;
-    this.showRightShadow = scrollLeft + clientWidth < scrollWidth - 10;
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const chipSwipers = document.querySelectorAll('.chips-swiper');
+      chipSwipers.forEach((el) => {
+        new Swiper(el as HTMLElement, {
+          modules: [FreeMode], 
+          slidesPerView: 'auto',
+          centeredSlides: false,
+          spaceBetween: 12, 
+          grabCursor: true,
+          freeMode: {
+            enabled: true,
+            sticky: false,
+          },
+          loop: false,
+        });
+      });
+    }, 100);  
   }
+
 
   ngOnInit(): void {
     this.dataService.getProjects().subscribe(data => {
