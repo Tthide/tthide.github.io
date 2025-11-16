@@ -8,18 +8,21 @@
 
         <!-- Nav links -->
         @for (link of navLinks; track $index) {
+        <div class="grow flex justify-center items-center">
+
             <!--Edge case for the resume-->
-        @if (link.href) {
-        <a [href]="link.href" target="_blank" class="grow text-center transition-colors mb-4 md:mb-0">
-            {{ link.label }}
-        </a>}
-        @else {
-        <a [routerLink]="link.path" routerLinkActive="text-accent_blue"
-            [routerLinkActiveOptions]="{ exact: link.exact || false }"
-            class="grow text-center transition-colors mb-4 md:mb-0">
-            {{ link.label }}
-        </a>
-        }
+            @if (link.href) {
+            <a [href]="link.href" target="_blank" class="relative text-center mb-4 md:mb-0 md:mb-0 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent_blue after:transition-all after:duration-300 hover:after:w-full transition-colors">
+                {{ link.label }}
+            </a>}
+            @else {
+            <a [routerLink]="link.path" routerLinkActive="text-accent_blue"
+                [routerLinkActiveOptions]="{ exact: link.exact || false }"
+                class="relative text-center mb-4 md:mb-0 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-accent_blue after:transition-all after:duration-300 hover:after:w-full transition-colors">
+                {{ link.label }}
+            </a>
+            }
+        </div>
         }
         <!-- Social links -->
         @for (social of socialLinks; track $index) {
