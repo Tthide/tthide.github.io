@@ -7,11 +7,14 @@
 
 
         <!-- Image / Picture Placeholder -->
-        <div aria-hidden="true" class="flex w-full md:w-1/2 xl:w-[66%] items-center justify-center bg-light rounded-lg overflow-hidden">
+        <div aria-hidden="true"
+            class="flex w-full md:w-1/2 xl:w-[66%] items-center justify-center bg-light rounded-lg overflow-hidden">
             <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center overflow-hidden">
                 @if (project.content.info_card.picture.url) {
-                <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
-                    class="w-full h-full object-contain transform hover:scale-[1.2] transition duration-[800ms]" />
+                <a [routerLink]="['/project', project.id]" class="w-full h-full ">
+                    <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
+                        class="w-full h-full object-contain transform hover:scale-[1.2] hover:brightness-[.85] transition duration-[800ms]" />
+                </a>
                 }
                 @else {
                 <span class="text-smooth_dark text-lg sm:text-xl font-spartan text-center">
@@ -27,7 +30,13 @@
             class="w-full md:w-1/2 xl:w-[33%] p-4 lg:p-5 2xl:p-7 rounded-lg bg-light flex flex-col gap-2 2xl:gap-4 self-stretch justify-around">
             <h3 class="text-accent_purple text-3xl xl:text-4xl font-bold font-spartan truncate"
                 [title]="project.content.info_card.title">
-                {{ project.content.info_card.title }}
+                <a [routerLink]="['/project', project.id]" class="relative max-w-full inline-block 
+           bg-gradient-to-r from-accent_purple to-accent_purple 
+           bg-[length:0%_2px] bg-no-repeat bg-left-bottom 
+           transition-all duration-300 ease-out
+           hover:bg-[length:100%_2px] truncate">
+                    {{ project.content.info_card.title }}
+                </a>
             </h3>
             <h4 class="text-smooth_dark text-xl xl:text-2xl font-semibold font-spartan">
                 {{ project.content.info_card.subtitle }}
@@ -45,7 +54,7 @@
                     [class.opacity-0]="!showLeftShadow[$index]" [class.opacity-100]="showLeftShadow[$index]"></div>
                 <!-- Right shadow -->
                 <div aria-hidden="true"
-                    class= "pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-smooth_dark/30 to-transparent transition-opacity duration-100 z-10"
+                    class="pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-smooth_dark/30 to-transparent transition-opacity duration-100 z-10"
                     [class.opacity-0]="!showRightShadow[$index]" [class.opacity-100]="showRightShadow[$index]"></div>
                 <div class="swiper chips-swiper relative overflow-hidden" [attr.data-index]="$index">
                     <div class="swiper-wrapper">
