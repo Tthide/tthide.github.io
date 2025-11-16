@@ -8,10 +8,10 @@
 
         <!-- Image / Picture Placeholder -->
         <div aria-hidden="true" class="flex w-full md:w-1/2 xl:w-[66%] items-center justify-center bg-light rounded-lg overflow-hidden">
-            <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center">
+            <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center overflow-hidden">
                 @if (project.content.info_card.picture.url) {
                 <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
-                    class="w-full h-full object-contain lg:object-cover" />
+                    class="w-full h-full object-contain transform hover:scale-[1.2] transition duration-[800ms]" />
                 }
                 @else {
                 <span class="text-smooth_dark text-lg sm:text-xl font-spartan text-center">
