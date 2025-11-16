@@ -1,0 +1,22 @@
+.burger-enter-animation {
+    animation: burger-slide 0.5s;
+}
+
+
+.burger-leave-animation {
+    animation: burger-slide 0.2s reverse;
+}
+
+
+@keyframes burger-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}

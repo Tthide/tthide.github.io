@@ -1,4 +1,4 @@
-<header class="bg-primary text-light font-konkhmer sticky md:relative top-0 z-50 px-6 py-5">
+<header class="bg-primary text-light font-konkhmer sticky md:relative top-0 z-50 px-6 py-5 transition">
     <nav class="flex justify-between items-center">
         <!-- Logo -->
         <a routerLink="/home" class="w-16 h-16 flex items-center justify-center">
@@ -37,7 +37,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    @if (isMenuOpen) { <div class="md:hidden mt-4 flex flex-col space-y-4">
+    @if (isMenuOpen) { <div class="md:hidden mt-4 flex flex-col space-y-4 transition-all" animate.enter="burger-enter-animation" animate.leave="burger-leave-animation">
         <a (click)="toggleMenu()" routerLink="/home" routerLinkActive="text-accent_blue" class="text-2xl">HOME</a>
         <a (click)="toggleMenu()" routerLink="/about" routerLinkActive="text-accent_blue" class="text-2xl">ABOUT</a>
         <a (click)="toggleMenu()"  href="./CV_Borde_Thibault.pdf" target="_blank" rel="noopener noreferrer" class="text-2xl">RESUME</a>
