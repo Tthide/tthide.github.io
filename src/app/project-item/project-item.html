@@ -25,7 +25,7 @@
             <!-- Picture (if no game) -->
             @else if (project.content.info_card.picture.url) {
             <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
-                class="max-w-full max-h-full object-contain lg:flex-1" />
+                class="max-w-full max-h-full object-contain lg:flex-1 transform hover:scale-[1.2] transition duration-[800ms]" />
             }
             @else {
             <span aria-hidden class="text-smooth_dark text-lg sm:text-xl font-spartan">
