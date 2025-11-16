@@ -3,12 +3,12 @@
     @defer {
     @for (project of projects; track $index) {
     <div
-        class="w-full p-3.5 lg:p-5 max-h-[70svh] xl:h-[60svh] 2xl:h-[50svh] bg-accent_blue outline outline-1 outline-primary hover:shadow-xl hover:shadow-primary transition rounded-lg flex flex-col md:flex-row gap-4 items-stretch">
+        class="w-full p-3.5 lg:p-5 max-h-[70svh] xl:h-[60svh] 2xl:h-[50svh] shadow-xl shadow-primary/40 md:shadow-primary/20 hover:shadow-primary/60 transition rounded-lg flex flex-col md:flex-row md:odd:flex-row-reverse gap-4 items-stretch">
 
 
         <!-- Image / Picture Placeholder -->
         <div aria-hidden="true" class="flex w-full md:w-1/2 xl:w-[66%] items-center justify-center bg-light rounded-lg overflow-hidden">
-            <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center ">
+            <div class="w-full h-full lg:max-h-full lg:h-full flex items-center justify-center">
                 @if (project.content.info_card.picture.url) {
                 <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
                     class="w-full h-full object-contain lg:object-cover" />
