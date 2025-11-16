@@ -13,12 +13,23 @@
             @if(project.content.info_card.hasGame) {
             <div aria-hidden="true" tabindex="-1"
                 class="max-w-full max-h-full h-full w-full lg:flex-1 flex justify-center items-stretch">
-                @if (unityLoaded) {
-                <div class="relative w-full h-full flex justify-center items-end">
+
+                <div class="relative w-full h-full flex justify-center items-center">
+
                     <!-- Iframe container -->
                     <div #unityContainer aria-hidden="true" tabindex="-1" class="w-full h-full"></div>
+
+                    @if (!userPressedLaunch)
+                    {
+                    <img [src]="project.content.info_card.picture.url" [alt]="project.content.info_card.picture.alt"
+                        class="absolute inset-0 w-full h-full object-cover z-10" />
+                    <button
+                        class=" absolute z-20 top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4  justify-center shrink  px-6 py-3 shadow-xl bg-primary text-light rounded-full font-bold text-24 xl:text-4xl hover:bg-accent_purple transition"
+                        (click)="launchUnityGame()">
+                        Launch Game
+                    </button>}
                 </div>
-                }
+
             </div>
             }
 

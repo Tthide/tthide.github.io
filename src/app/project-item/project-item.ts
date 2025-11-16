@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, OnDestroy, ViewChild, ElementRef, AfterViewInit, NgZone } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DataService, Project } from "../services/data.service";
 import { Observable, Subscription, defer } from "rxjs";
@@ -9,7 +9,7 @@ import { ProjectProcessComponent } from "./project-process/project-process";
 
 @Component({
   selector: "app-project-item",
-  imports: [RotatingTextIconComponent, AsyncPipe,ProjectProcessComponent],
+  imports: [RotatingTextIconComponent, AsyncPipe, ProjectProcessComponent],
   templateUrl: "./project-item.html",
   standalone: true,
   styleUrl: "./project-item.css"
@@ -23,6 +23,7 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   unityProgress = 0;
   private sub?: Subscription;
   unityLoaded = false;
+  userPressedLaunch = false;
 
   // Loading flags
   private containerReady = false;
@@ -34,7 +35,8 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+      private ngZone: NgZone 
   ) { }
 
   ngOnInit() {
@@ -46,20 +48,30 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
     this.sub = this.project$.subscribe(project => {
       if (project?.content?.info_card?.hasGame) {
         this.projectReady = project;
-        this.unityLoaded = true;
-        if (this.containerReady) {
-          this.loadUnityGame(project.id);
-        }
+
       }
     });
   }
 
   ngAfterViewInit() {
     this.containerReady = true;
-    if (this.projectReady) {
-      this.loadUnityGame(this.projectReady.id);
-    }
   }
+
+launchUnityGame() {
+  if (!this.projectReady) return;
+
+  // Use NgZone to safely update the template
+  this.ngZone.run(() => {
+    this.userPressedLaunch = true;
+
+    // Wait for next tick to ensure container exists in DOM
+    setTimeout(() => {
+      if (this.containerReady) {
+        this.loadUnityGame(this.projectReady!.id);
+      }
+    },500);
+  });
+}
 
   private loadUnityGame(gameId: number) {
     console.log('[Unity] Loading game in iframe, ID:', gameId);
