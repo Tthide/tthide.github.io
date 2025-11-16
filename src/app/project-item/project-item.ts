@@ -24,6 +24,7 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   private sub?: Subscription;
   unityLoaded = false;
   userPressedLaunch = false;
+  showLaunchWarning = false;
 
   // Loading flags
   private containerReady = false;
@@ -36,7 +37,7 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-      private ngZone: NgZone 
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -57,21 +58,29 @@ export class ProjectItemComponent implements OnDestroy, AfterViewInit {
     this.containerReady = true;
   }
 
-launchUnityGame() {
-  if (!this.projectReady) return;
+  launchUnityGame() {
+    this.showLaunchWarning = true;
+    if (!this.projectReady) return;
+  }
 
-  // Use NgZone to safely update the template
-  this.ngZone.run(() => {
+  confirmLaunchGame() {
+    this.showLaunchWarning = false;
     this.userPressedLaunch = true;
+    if (!this.projectReady) return;
 
-    // Wait for next tick to ensure container exists in DOM
-    setTimeout(() => {
-      if (this.containerReady) {
-        this.loadUnityGame(this.projectReady!.id);
-      }
-    },500);
-  });
-}
+    if (this.containerReady && this.projectReady) {
+      // Use NgZone to safely update the template
+      this.ngZone.run(() => {
+        this.userPressedLaunch = true;
+
+        setTimeout(() => {
+          if (this.containerReady) {
+            this.loadUnityGame(this.projectReady!.id);
+          }
+        }, 500);
+      });
+    }
+  }
 
   private loadUnityGame(gameId: number) {
     console.log('[Unity] Loading game in iframe, ID:', gameId);
