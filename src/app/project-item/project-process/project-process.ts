@@ -63,8 +63,6 @@ export class ProjectProcessComponent implements AfterViewInit, OnInit {
       this.updateSlideLinks(idx, step.isFocused);
     });
 
-    // Immediately trigger Swiper re-center and update
-    if (this.swiper) this.swiper.update();
     
     // Update ARIA live region
     const announcer = this.elementRef.nativeElement.querySelector('#slide-announcer');
