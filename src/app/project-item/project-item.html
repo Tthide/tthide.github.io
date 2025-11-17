@@ -1,7 +1,7 @@
 @if (project$ | async; as project)
-{<div class="flex flex-col gap-8 lg:gap-20">
+{<div class="flex flex-col gap-8 lg:gap-20 items-center">
     <!-- Hero -->
-    <section class="flex flex-col items-center text-center h-hero lg:h-hero-lg">
+    <section class=" w-full flex flex-col items-center text-center h-hero lg:h-hero-lg">
         <!-- Title -->
         <h1 class="text-smooth_dark text-5xl lg:text-8xl font-spartan" [innerHTML]="project.content.info_card.title">
         </h1>
@@ -34,7 +34,7 @@
                     @if (showLaunchWarning)
                     { <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                         <div class="bg-white rounded-xl p-6 max-w-sm text-center shadow-xl">
-                            <h2 class="text-xl font-bold text-error_red mb-4">  ⚠️ Performance Warning</h2>
+                            <h2 class="text-xl font-bold text-error_red mb-4"> ⚠️ Performance Warning</h2>
                             <p class="mb-6 text-smooth_dark font-medium">
                                 This game may be resource-heavy and could impact your browser performance, especially on
                                 mobile devices.
@@ -80,71 +80,85 @@
 
     <div class="w-full border-t-4 border-primary"></div>
 
-    <!-- Overview -->
-    <section class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
-        <h2 class="lg:w-80 text-dark font-semibold text-3xl md:text-4xl lg:text-5xl font-spartan">
-            PROJECT OVERVIEW
-        </h2>
-        <p class="flex-1 text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
-            [innerHTML]="project.content.project_overview.desc">
-        </p>
+    <!-- Content -->
+    <section class="flex flex-col gap-8 lg:gap-20 items-center w-full lg:w-3/4">
+
+        <!-- Overview -->
+        <section class="flex flex-col items-start gap-8 lg:gap-8 lg:justify-between lg:min-h-[70svh]">
+
+            <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+                <h2 class="lg:w-80 text-dark font-semibold text-3xl md:text-4xl lg:text-5xl font-spartan">
+                    PROJECT OVERVIEW
+                </h2>
+                <p class="flex-1 text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
+                    [innerHTML]="project.content.project_overview.desc">
+                </p>
+            </div>
+            <!-- Timeframe / Skills / Tech -->
+            <section class="flex flex-col md:flex-row justify-between w-full gap-4 md:gap-10">
+                <div class="flex-1 flex flex-col gap-4">
+                    <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">TIMEFRAME</h3>
+                    <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
+                        [innerHTML]="project.content.project_overview.timeframe">
+                    </p>
+                </div>
+
+                <div class="self-stretch w-px border-l-2 border-primary"></div>
+
+                <div class="flex-1 flex flex-col gap-4">
+                    <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">SKILLS USED</h3>
+                    <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
+                        [innerHTML]="project.content.project_overview.skills">
+                    </p>
+                </div>
+
+                <div class="self-stretch w-px border-l-2 border-primary"></div>
+
+                <div class="flex-1 flex flex-col gap-4">
+                    <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">TECH INVOLVED</h3>
+                    <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
+                        [innerHTML]="project.content.project_overview.tech">
+                    </p>
+                </div>
+            </section>
+
+            <!-- Objective -->
+            <section class="flex flex-col gap-4 md:gap-8">
+                <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">OBJECTIVE / CHALLENGE</h3>
+                <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
+                    [innerHTML]="project.content.project_overview.objective">
+                </p>
+            </section>
+        </section>
+        <div class="w-full border-t-2 border-primary"></div>
+
+        <!-- Process -->
+        <app-project-process [processStep]="project.content.process.steps" />
+
+        <div class="w-full border-t-2 border-primary"></div>
+
+        <!-- Results -->
+        <section class="flex flex-col gap-4 md:gap-8">
+            <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">RESULTS & IMPACTS</h3>
+            <div class="project-content-rich-text" [innerHTML]="project.content.process.results">
+            </div>
+
+        </section>
+
+        <!-- Personal Reflection -->
+        @if(project.content.process.personal_reflection){
+        <div class="w-full border-t-2 border-primary"></div>
+
+
+        <section class="flex flex-col gap-4 md:gap-8">
+            <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">PERSONAL REFLECTION</h3>
+            <div class="project-content-rich-text" [innerHTML]="project.content.process.personal_reflection"></div>
+
+        </section>
+
+        }
+
     </section>
-
-    <!-- Objective -->
-    <section class="flex flex-col gap-4 md:gap-8">
-        <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">OBJECTIVE / CHALLENGE</h3>
-        <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
-            [innerHTML]="project.content.project_overview.objective">
-        </p>
-    </section>
-
-    <!-- Timeframe / Skills / Tech -->
-    <section class="flex flex-col md:flex-row justify-between w-full gap-6">
-        <div class="flex-1 flex flex-col gap-4">
-            <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">TIMEFRAME</h3>
-            <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
-                [innerHTML]="project.content.project_overview.timeframe">
-            </p>
-        </div>
-        <div class="flex-1 flex flex-col gap-4">
-            <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">SKILLS USED</h3>
-            <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
-                [innerHTML]="project.content.project_overview.skills">
-            </p>
-        </div>
-        <div class="flex-1 flex flex-col gap-4">
-            <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">TECH INVOLVED</h3>
-            <p class="text-smooth_dark text-base sm:text-lg md:text-xl font-spartan"
-                [innerHTML]="project.content.project_overview.tech">
-            </p>
-        </div>
-    </section>
-
-    <div class="w-full border-t-4 border-primary"></div>
-
-    <!-- Process -->
-    <app-project-process [processStep]="project.content.process.steps" />
-
-    <!-- Results -->
-    <section class="flex flex-col gap-4 md:gap-8">
-        <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">RESULTS & IMPACTS</h3>
-        <div class="project-content-rich-text" [innerHTML]="project.content.process.results">
-        </div>
-
-    </section>
-
-    <!-- Personal Reflection -->
-    @if(project.content.process.personal_reflection){
-    <div class="w-full border-t-4 border-primary"></div>
-
-
-    <section class="flex flex-col gap-4 md:gap-8">
-        <h3 class="text-accent_purple text-2xl md:text-3xl font-bold font-spartan">PERSONAL REFLECTION</h3>
-        <div class="project-content-rich-text" [innerHTML]="project.content.process.personal_reflection"></div>
-
-    </section>
-
-    }
 
     <!-- Gallery -->
     @if (project.content.gallery.length>0)
