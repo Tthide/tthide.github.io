@@ -15,10 +15,10 @@ import { RouterOutlet } from '@angular/router';
         focus-visible:top-4">
       Skip to content</a>
       <app-header />
-      <main id="main" tabindex="-1" class=" grow px-6 py-5 lg:py-16 md:px-[7%] lg:px-[10%]">
+      <main id="main" tabindex="-1" class=" grow px-6 py-5 lg:py-16 md:px-[7%] lg:px-[10%] xl:px-[15%]">
         <router-outlet />
       </main>
-      <app-footer class="px-0 md:px-[7%] lg:px-[10%]" />
+      <app-footer class="px-0 md:px-[7%] lg:px-[10%]  xl:px-[15%]" />
     </div>
   `,
 })
