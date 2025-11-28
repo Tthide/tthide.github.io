@@ -1,0 +1,3 @@
+.skill-icon{
+    @apply text-accent_purple size-10 stroke-current stroke-[1.5] fill-none
+}
