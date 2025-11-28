@@ -8,13 +8,26 @@
 }
 
 .skill-card:hover{
-   @apply bg-light shadow-xl shadow-black scale-105
+   @apply bg-light shadow-2xl shadow-black scale-105
 }
 
 .skill-card-header {
-    @apply flex items-center gap-3 w-full
+    @apply flex items-center gap-3 w-full p-1 font-spartan bg-light border-b-2 border-b-transparent transition-colors duration-500
 }
 
+.group:hover .skill-card-header {
+    @apply border-b-accent_purple
+}
+
+.skill-card-list {
+@apply  list-inside text-smooth_dark space-y-2 font-spartan text-lg 
+}
+
+.skill-card-list li::marker {
+  content: "★  ";
+    @apply text-accent_purple 
+
+}
 
 .skill-card-header-label {
     @apply text-accent_purple text-2xl font-semibold

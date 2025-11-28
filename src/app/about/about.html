@@ -7,13 +7,9 @@
         <div
             class="w-full md:w-[70%] lg:w-1/2 shrink sm:shrink-0 flex flex-col justify-center md:justify-evenly items-center gap-8">
             <div class="w-full">
-                <h1 class="text-3xl lg:text-4xl font-spartan leading-snug">
-                    <span class="text-accent_purple font-bold">UX Engineer</span>
-                    <span class="text-smooth_dark font-normal"> with a Double Degree EMSE & TU Wien and specialization
-                        in
-                    </span>
-                    <span class="text-accent_purple font-bold">Human-Centered Computing</span>
-                    <span class="text-smooth_dark font-normal">. Based in Lyon, France</span>
+                <h1 class="text-3xl lg:text-4xl font-spartan leading-snug font-bold text-accent_purple">
+                    UX Engineer combining design intuition with engineering rigor.
+                    Turning complex systems into clear, accessible, human-centered interactions.
                 </h1>
                 <p class="text-smooth_dark text-lg md:text-xl font-normal font-spartan tracking-wider mt-4 max-w-md">
                     Among many other things...
@@ -49,56 +45,27 @@
             <h2 class="text-accent_purple text-3xl md:text-4xl font-semibold font-spartan">About Me</h2>
             <p class="text-smooth_dark text-lg md:text-2xl font-normal font-spartan leading-relaxed">
                 Hello! I’m Thibault Borde, a UX Engineer with a double degree from
-                <span class="text-accent_purple">EMSE</span> (École des Mines de Saint-Étienne) and
-                <span class="text-accent_purple">TU Wien</span>, specializing in Human-Centered Computing and Media.
-                My academic and professional journey has been shaped by a deep curiosity for
-                <span class="text-accent_purple">technology, human behavior, and inclusive design</span>.
-                I thrive working with <span class="text-accent_purple">user experience, software development,
+                EMSE (École des Mines de Saint-Étienne) and
+                TU Wien, specializing in Human-Centered Computing and Media.
+                <span class="text-accent_purple font-semibold">I love working on everything that involves user
+                    experience, software development,
                     and
                     creative problem-solving</span>,
                 and I’m passionate about crafting digital experiences that are not only functional but also
-                <span class="text-accent_purple">intuitive, accessible, and meaningful</span>.
+                intuitive, accessible, and meaningful.
             </p>
         </section>
 
-        <!-- Why UX -->
-        <section class="flex flex-col gap-2.5 lg:gap-5">
-            <h2 class="text-accent_purple text-3xl md:text-4xl font-semibold font-spartan">Why UX?</h2>
-            <p class="text-smooth_dark text-lg md:text-2xl font-normal font-spartan">
-                Ever since I was a kid, I always knew I wanted to <span class="text-accent_purple">create and design
-                    things</span>,
-                especially if it could help people in their daily life. I was (and still am) very
-                <span class="text-accent_purple">curious about science and how things work</span>.
-                I would draw mechanisms that popped in my head, or build pipelines out of paper sheets to create a
-                circuit for marbles.
-                <br />
-                <br />
-                Discovering UX principles on a random Instagram post was a <span
-                    class="text-accent_purple">game-changer</span> for me. Indeed, I have always thought of
-                designing
-                and creating things for the sake of efficiency (a very engineer mindset indeed). However, I never
-                really
-                considered how people could be impacted by designs and that, ultimately, it is people that use and
-                should benefit from the things we create. That’s when it clicked:
-
-            </p>
-            <p class="text-accent_purple mt-4 lg:mt-14 text-center text-2xl xl:text-3xl font-montserrat italic font-semibold">
-                Engineering
-                shouldn’t just be about making systems work; it should also be
-                about making them enjoyable,
-                intuitive,
-                and meaningful for the people who use them.</p>
-        </section>
-
+        
         <!-- Skills Section -->
         <section
-            class="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 w-screen flex flex-col gap-8 lg:gap-30 bg-primary">
+            class="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 lg:py-20 w-screen flex flex-col gap-8 lg:gap-30 bg-primary">
             <h2 class="text-light text-3xl md:text-4xl font-semibold text-center font-spartan">MY SKILLS</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-figma-icon lucide-figma skill-icon">
@@ -110,7 +77,7 @@
                         </svg>
                         <h3 class="skill-card-header-label">UX/UI Design</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>Figma, Illustrator, Photoshop</li>
                         <li>Wireframes & high-fidelity UI</li>
                         <li>User flows, IA, personas</li>
@@ -120,7 +87,7 @@
                 </div>
 
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-search-icon lucide-search skill-icon">
@@ -129,7 +96,7 @@
                         </svg>
                         <h3 class="skill-card-header-label">UX Research</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>Interviews, observation</li>
                         <li>Usability tests</li>
                         <li>Surveys & quantitative analysis</li>
@@ -138,7 +105,7 @@
                     </ul>
                 </div>
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                             stroke-linejoin="round"
@@ -158,7 +125,7 @@
                         </svg>
                         <h3 class="skill-card-header-label">Front-End Development</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>React, Angular</li>
                         <li>HTML, CSS, SCSS, Tailwind</li>
                         <li>Responsive & accessibility-friendly UI</li>
@@ -167,7 +134,7 @@
                 </div>
 
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-cog-icon lucide-cog skill-icon">
@@ -186,9 +153,9 @@
                             <circle cx="12" cy="12" r="2" />
                             <circle cx="12" cy="12" r="8" />
                         </svg>
-                        <h3 class="skill-card-header-label">Technical & Engineering</h3>
+                        <h3 class="skill-card-header-label">Software Engineering</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>Unity (interactive prototyping)</li>
                         <li>Python, Java, C#</li>
                         <li>Git & GitHub</li>
@@ -198,7 +165,7 @@
                 </div>
 
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -10 24 24" stroke-linecap="round"
                             stroke-linejoin="round" class="skill-icon !size-11">
@@ -208,7 +175,7 @@
 
                         <h3 class="skill-card-header-label">Methods & Agility</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>Design Thinking, Lean UX</li>
                         <li>Rapid prototyping</li>
                         <li>Workshop facilitation</li>
@@ -217,7 +184,7 @@
                 </div>
 
                 <!-- Card -->
-                <div class="skill-card">
+                <div class="skill-card group">
                     <div class="skill-card-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-handshake-icon lucide-handshake skill-icon">
@@ -230,7 +197,7 @@
                         </svg>
                         <h3 class="skill-card-header-label">Soft Skills</h3>
                     </div>
-                    <ul class="list-disc list-inside text-smooth_dark space-y-2 text-lg">
+                    <ul class="skill-card-list">
                         <li>Team collaboration</li>
                         <li>Autonomy & initiative</li>
                         <li>Communication & pedagogy</li>
@@ -241,6 +208,45 @@
             </div>
         </section>
 
+
+        <!-- Why UX -->
+        <section class="flex flex-col gap-2.5 lg:gap-5">
+            <h2 class="text-accent_purple text-3xl md:text-4xl font-semibold font-spartan">Why UX?</h2>
+            <p class="text-smooth_dark text-lg md:text-2xl font-normal font-spartan">
+                Ever since I was a kid, I always knew I wanted to <span class="text-accent_purple">create and design
+                    things</span>,
+                especially if it could help people in their daily life. I was (and still am) very
+                curious about science and how things work.
+                I would draw mechanisms that popped in my head, build pipes out of paper sheets to create
+                circuits for marbles or be fascinated not by knights but rather by how trebuchets and drawbridges work.
+                It's all of this that made me want to become an engineer.
+                <br />
+                <br />
+                Discovering UX principles on a random Instagram post was a <span
+                    class="text-accent_purple">game-changer</span> for me. Indeed, I have always thought of
+                designing
+                and creating things for the sake of efficiency (a very engineer mindset indeed). However, I never
+                really
+                considered how people could be impacted by designs and that, ultimately, it is people that use and
+                should benefit from the things we create. That’s when it clicked:
+
+            </p>
+            <p
+                class="text-accent_purple m-4 lg:m-20 text-center text-2xl xl:text-3xl font-montserrat italic font-semibold">
+                Engineering
+                shouldn’t just be about making systems work; it should also be
+                about making them enjoyable,
+                intuitive,
+                and meaningful for the people who use them.</p>
+            <p class="text-smooth_dark text-lg md:text-2xl font-normal font-spartan">
+                And now I combine these two schools of thought in my approach to design experiences: Efficiency and
+                Human-Centeredness.
+            </p>
+
+        </section>
+
+        <!-- Divider -->
+        <div class="divider"></div>
 
         <!-- My Journey / Beyond the Screen -->
         <div class="flex flex-col md:flex-row w-full gap-10">
