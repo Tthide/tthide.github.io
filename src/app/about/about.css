@@ -1,3 +1,26 @@
-.skill-icon{
+.divider{
+    @apply block h-1 bg-accent_purple self-stretch
+}
+
+
+.skill-card {
+    @apply p-6 rounded-2xl bg-light shadow-md shadow-smooth_dark flex flex-col gap-4 border border-gray-100 transition-all 
+}
+
+.skill-card:hover{
+   @apply bg-light shadow-xl shadow-black scale-105
+}
+
+.skill-card-header {
+    @apply flex items-center gap-3 w-full
+}
+
+
+.skill-card-header-label {
+    @apply text-accent_purple text-2xl font-semibold
+}
+
+
+.skill-icon {
     @apply text-accent_purple size-10 stroke-current stroke-[1.5] fill-none
 }
