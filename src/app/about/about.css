@@ -15,9 +15,7 @@
     @apply flex items-center gap-3 w-full p-1 font-spartan bg-light border-b-2 border-b-transparent transition-colors duration-500
 }
 
-.group:hover .skill-card-header {
-    @apply border-b-accent_purple
-}
+
 
 .skill-card-list {
 @apply  list-inside text-smooth_dark space-y-2 font-spartan text-lg 
