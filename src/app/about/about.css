@@ -37,3 +37,11 @@
 .skill-icon {
     @apply text-accent_purple size-10 stroke-current stroke-[1.5] fill-none
 }
+
+.what_i_do-icon{
+    @apply text-accent_purple !size-16 stroke-current stroke-[0.2] fill-accent_purple place-items-center
+}
+
+.what_i_do-list li{
+    @apply items-center
+}
