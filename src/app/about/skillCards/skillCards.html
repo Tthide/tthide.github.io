@@ -1,8 +1,10 @@
 <section
-    class="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 lg:py-20 w-screen flex flex-col lg:flex-row-reverse items-center justify-around gap-8 lg:gap-30 bg-primary">
-    <h2 class="text-light text-3xl md:text-4xl font-semibold text-center font-spartan">MY SKILLS</h2>
+    class="section relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 lg:py-20 w-screen flex flex-col lg:flex-row-reverse items-center justify-around gap-8 lg:gap-30 bg-primary">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-smooth_dark items-start">
+    <h2 class="skill-header text-light text-3xl md:text-4xl lg:text-6xl font-semibold text-center font-spartan transition-all duration-500">
+        MY SKILLS
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-smooth_dark items-start accent-accent_blue">
         @for (skill of skills; track skill.id) {
         <div class="skill-card shrink group" [class]="isCardOpen(skill.id) ? 'gap-4' : 'gap-0'">
             <button class="skill-card-header flex flex-row flex-shrink" (click)="toggle(skill.id)">
@@ -21,14 +23,14 @@
                 @if(!isCardOpen(skill.id)){
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-chevron-down-icon lucide-chevron-down !size-10 text-accent_purple">
+                    class="lucide lucide-chevron-down-icon lucide-chevron-down !size-10 text-accent_purple" aria-hidden="true">
                     <path d="m6 9 6 6 6-6" />
                 </svg>
                 }
                 @else {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-chevron-up-icon lucide-chevron-up  !size-10 text-accent_purple">
+                    class="lucide lucide-chevron-up-icon lucide-chevron-up  !size-10 text-accent_purple" aria-hidden="true">
                     <path d="m18 15-6-6-6 6" />
                 </svg>
                 }
@@ -45,4 +47,5 @@
         <p>No skills data available.</p>
         }
     </div>
+
 </section>

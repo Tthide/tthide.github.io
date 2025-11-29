@@ -29,6 +29,9 @@ module.exports = {
         error_red: "#cc0000",       // error text red
 
       },
+      boxShadow: {
+        'stacked': '5px 5px 0px 0px #91C8E4, 10px 10px 0px 0px #483AA0, 15px 15px 0px 0px #91C8E4, 5px 5px 15px 5px rgba(0,0,0,0)',
+      },
       fontFamily: {
         konkhmer: ["Konkhmer Sleokchher", "sans-serif"],
         spartan: ["League Spartan", "sans-serif"],
