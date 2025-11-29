@@ -1,14 +1,14 @@
-.divider{
+.divider {
     @apply block h-1 bg-accent_purple self-stretch
 }
 
 
 .skill-card {
-    @apply p-6 rounded-2xl bg-light shadow-md shadow-smooth_dark flex flex-col gap-4 border border-gray-100 transition-all 
+    @apply p-2 px-4 lg:p-6 rounded-2xl bg-light shadow-md shadow-smooth_dark flex flex-col gap-4 border border-gray-100 transition-all
 }
 
-.skill-card:hover{
-   @apply bg-light shadow-2xl shadow-black scale-105 transition-all 
+.skill-card:hover {
+    @apply bg-light shadow-2xl shadow-black scale-105 transition-all
 }
 
 .skill-card-header {
@@ -18,13 +18,17 @@
 
 
 .skill-card-list {
-@apply  list-inside text-smooth_dark space-y-2 font-spartan text-lg 
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    @apply list-inside text-smooth_dark font-spartan text-lg overflow-hidden max-h-0 opacity-0 m-0
+}
+
+.skill-card-list.open {
+    @apply max-h-[1000px] opacity-100;
 }
 
 .skill-card-list li::marker {
-  content: "★  ";
-    @apply text-accent_purple 
-
+    content: "★  ";
+    @apply text-accent_purple
 }
 
 .skill-card-header-label {
@@ -36,10 +40,10 @@
     @apply text-accent_purple !size-10 stroke-current stroke-[1.5] fill-none
 }
 
-.what_i_do-icon{
+.what_i_do-icon {
     @apply text-accent_purple !size-16 stroke-current stroke-[0.2] fill-accent_purple place-items-center
 }
 
-.what_i_do-list li{
+.what_i_do-list li {
     @apply items-center
 }

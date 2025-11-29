@@ -1,14 +1,13 @@
 <section
-    class="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 lg:py-20 w-screen flex flex-row-reverse items-center justify-around gap-8 lg:gap-30 bg-primary">
+    class="relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] px-6 md:px-[7%] lg:px-[10%] xl:px-[15%] py-6 lg:py-20 w-screen flex flex-col lg:flex-row-reverse items-center justify-around gap-8 lg:gap-30 bg-primary">
     <h2 class="text-light text-3xl md:text-4xl font-semibold text-center font-spartan">MY SKILLS</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-smooth_dark">
-
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-smooth_dark items-start">
         @for (skill of skills; track skill.id) {
-        <div class="skill-card shrink group">
+        <div class="skill-card shrink group" [class]="isCardOpen(skill.id) ? 'gap-4' : 'gap-0'">
             <button class="skill-card-header flex flex-row flex-shrink" (click)="toggle(skill.id)">
 
-                <div class="w-full flex shrink items-center">
+                <div class="w-full flex shrink items-center  text-start">
                     <!--
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round"
                         stroke-linejoin="round"
@@ -35,13 +34,12 @@
                 }
             </button>
 
-            @if(isCardOpen(skill.id)){
-            <ul class="skill-card-list">
+            <ul class="skill-card-list" [class.open]="isCardOpen(skill.id)" [class.closed]="!isCardOpen(skill.id)">
                 @for (detail of skill.details; track $index) {
                 <li>{{ detail }}</li>
                 }
             </ul>
-            }
+
         </div>
         } @empty {
         <p>No skills data available.</p>
