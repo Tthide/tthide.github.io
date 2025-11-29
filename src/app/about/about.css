@@ -8,7 +8,7 @@
 }
 
 .skill-card:hover{
-   @apply bg-light shadow-2xl shadow-black scale-105
+   @apply bg-light shadow-2xl shadow-black scale-105 transition-all 
 }
 
 .skill-card-header {
@@ -33,7 +33,7 @@
 
 
 .skill-icon {
-    @apply text-accent_purple size-10 stroke-current stroke-[1.5] fill-none
+    @apply text-accent_purple !size-10 stroke-current stroke-[1.5] fill-none
 }
 
 .what_i_do-icon{
