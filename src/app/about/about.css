@@ -16,7 +16,7 @@ transition: text-shadow 0.35s ease scale 0.4s ease;
     @apply bg-light scale-105 shadow-stacked transition-all
 }
 
-.skill-card-header {
+.skill-card-header-title {
     @apply flex items-center gap-3 w-full p-1 font-spartan bg-light border-b-2 border-b-transparent transition-colors duration-500
 }
 
