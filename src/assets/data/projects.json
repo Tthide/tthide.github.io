@@ -190,6 +190,7 @@
                     "subtitle": "Social Football Prediction Platform",
                     "desc": "A friendly, money-free sports betting platform where users predict football match outcomes, compete with friends, and track who’s right most often.",
                     "key_words": [
+                        "Work In Progress",
                         "Product Design",
                         "UX/UI",
                         "Design System",
@@ -258,24 +259,27 @@
                             "step_title": "Wireframing & Design Validation",
                             "content": "<p>Once the structure and rules were in place, I created wireframes in Figma to validate layout, hierarchy, and usability. These wireframes focused on critical screens such as match listings, bet placement, group rankings, and profile statistics.</p><p>They were used to test assumptions with future users, quickly iterate on unclear interactions, and identify friction points before moving to high-fidelity design. This step helped confirm that the app remained easy to understand despite the underlying complexity of rules and data.</p>",
                             "picture": {
-                                "url": "",
-                                "alt": ""
+                                "url": "gallery/2/monkeyBet_Wireframe.png",
+                                "alt": "A screenshot of multiple frames of the initial Figma wireframe, they represent how early user interface designs and interactions looked like.",
+                                "source": "Screenshot of multiple frames of the initial Figma wireframe."
                             }
                         },
                         {
                             "step_title": "Design System & Design Tokens",
                             "content": "<p>A dedicated <strong>design system</strong> was created to support long-term development. This included typography choices, light and dark color palettes, spacing rules, motion principles, and clearly defined component states.</p><p>In this project, <strong>design tokens are not limited to static values</strong>. While colors, surfaces, text roles, and semantic states are defined as tokens and shared between Figma and the codebase, they are also <strong>materialized through reusable React components</strong>.</p><p>Core primitives such as <em>Button</em>, <em>Text</em>, and layout or interaction components act as living tokens: they encode visual rules, interaction behavior, accessibility states, motion, and responsive logic directly in code. For example, button variants, sizes, hover and disabled behaviors, typography scales, and modal interactions are centralized and enforced through these components rather than redefined at usage level.</p><p>This approach ensures strong visual consistency, reduces decision fatigue during development, and makes the system highly scalable. New features, screens, or user customizable theme can be introduced by composing existing primitives. </p>",
                             "picture": {
-                                "url": "",
-                                "alt": ""
+                                "url": "gallery/2/monkeyBet_DesignSystem.png",
+                                "alt": "Definition of the design system and contribution to the brand identity.",
+                                "source": "Definition of the design system and contribution to the brand identity, screenshots from [https://colorffy.com/]."
                             }
                         },
                         {
                             "step_title": "Frontend Implementation",
                             "content": "<p>The frontend is currently under active development using <strong>React, TypeScript, and Tailwind</strong>. I am responsible for translating the design system into reusable components, implementing layouts, handling user interactions, and connecting the UI to backend APIs.</p><p>Development is iterative, with frequent adjustments to both design and code as new insights emerge. The focus remains on clarity, responsiveness, and maintainability.</p>",
                             "picture": {
-                                "url": "",
-                                "alt": ""
+                                "url": "gallery/2/monkeyBet_FrontEndImplement.png",
+                                "alt": "Screenshot of the in-development of MonkeyBet's interface.",
+                                "source": "Screenshot of the in-development of MonkeyBet's interface."
                             }
                         },
                         {
