@@ -32,7 +32,7 @@
                             "picture": {
                                 "url": "gallery/0/KISS_step_1.webp",
                                 "alt": "Design Thinking according to Nielsen Norman Group",
-                                "source":"© Nielsen Norman Group"
+                                "source": "© Nielsen Norman Group"
                             }
                         },
                         {
@@ -178,6 +178,113 @@
                     ],
                     "results": "<p>The final version was once again tested with players and received <strong>highly positive feedback</strong>. Indeed, it was <strong>rated as the top project among those presented</strong>. Testers highlighted its elegant mechanics, satisfying chain reactions, and strong sense of progression.</p><p>Future development opportunities include expanding the game with <strong>online multiplayer</strong>, as the current version supports only local play. Additional features could involve new <strong>maps and layouts</strong> to diversify strategies, more <strong>customization options</strong> for civilizations or visual themes, and further <strong>quality-of-life enhancements</strong>. A potential long-term goal is to adapt <strong>Node Wars</strong> for <strong>mobile platforms</strong>, making it accessible to a wider audience.</p>",
                     "personal_reflection": "<p>Making a video game was always a dream of mine, and doing so was a very enriching experience. Through this project, I learned some fundamental aspects of game design. For example the MDA framework and how to predict how game mechanics, which is the aspect of the game the developer can most easily modify, impacts the player experience.</p><p>Another fundamental concept I learned through this project is one definition of what a game is.<strong> Games, whatever the type they are, follow three basic rules:</strong></p><ul><li><strong>They must have doable tasks.</strong> This doesn't mean that the game cannot be hard or complex   only that, at the end of the day, the game and its tasks should be possible to complete. For instance, running a marathon is hard for a random person, but it is doable even if it might take longer.</li><li><strong>The game must offer understandable feedback.</strong> The player should be able to interpret how well they are performing to have a better experience. In the marathon example, having other runners provide you relative feedback on your performance (\"are you better than others?\" since it’s a race) and distance markers showing your progress (\"how much farther do you have to run?\") are both examples of meaningful feedback.</li><li><strong>The game needs to take place in a safe environment.</strong> Otherwise, it shouldn't be considered a game. This principle means that games are defined by a kind of “magic” space where players can take risks, compete, or experience failure without suffering real-world consequences. Inside this boundary, players agree to follow a specific set of rules and to suspend certain real-world concerns for the sake of play.</li></ul>"
+                },
+                "gallery": []
+            }
+        },
+        {
+            "id": 2,
+            "content": {
+                "info_card": {
+                    "title": "MonkeyBet",
+                    "subtitle": "Social Football Prediction Platform",
+                    "desc": "A friendly, money-free sports betting platform where users predict football match outcomes, compete with friends, and track who’s right most often.",
+                    "key_words": [
+                        "Work In Progress",
+                        "Product Design",
+                        "UX/UI",
+                        "Design System",
+                        "React",
+                        "Web App"
+                    ],
+                    "picture": {
+                        "url": "gallery/2/monkeybet_main.png",
+                        "alt": "MonkeyBet application interface preview"
+                    }
+                },
+                "project_overview": {
+                    "desc": "<strong>MonkeyBet</strong> is a social web application that allows users to track football events and predict match outcomes without using real money. Instead of financial stakes, the focus is on friendly competition, statistics, and promoting additional social interaction in a real-world setting. Users can create or join groups with friends, place predictions on upcoming matches, and compare their accuracy over time.",
+                    "objective": "The goal of this project is to design and implement a complete, real-world web product from early ideation and user testing to design system creation and frontend development. MonkeyBet aims to explore how sports betting mechanics can be reimagined in a playful, non-monetary, and socially engaging way.",
+                    "timeframe": "Ongoing",
+                    "skills": "Product Design, UX Research, Wireframing, Design Systems, Frontend Development, State Management",
+                    "tech": "React, TypeScript, Figma, Design Tokens, Tailwind v4+, REST APIs (football data)"
+                },
+                "process": {
+                    "steps": [
+                        {
+                            "step_title": "Idea & Concept Definition",
+                            "content": "<p>The project started from a simple observation: many people enjoy predicting sports outcomes, especially in a game-night or party setting, but setting up rules and keeping track of who’s right or wrong can quickly become tedious. Moreover, not everyone wants to engage with real-money betting. The core idea behind <strong>MonkeyBet</strong> is to preserve the excitement of predictions while removing financial risk and reducing the friction involved in setting up and tracking outcomes, especially within groups of several players.</p><p>Early questions focused on defining the experience: What makes predictions fun without money? What do people earn or lose with their bets? Do we even want to punish players for being wrong? How can competition remain engaging over time? And how can the product encourage repeated use around real-world football events?</p>"
+                        },
+                        {
+                            "step_title": "User Needs & Feature Scoping",
+                            "content": "<p>Before moving into visual design, we focused on identifying core user needs and defining a realistic feature scope for an initial version. Rather than fully relying on a traditional persona methodology, I chose to focus directly on mapping and defining users’ needs and motivations.</p><p>Creating fully fledged personas can be time-consuming, especially in a context where the target user group is already well understood and closely aligned with our own usage patterns. In this case, spending time defining fictional profiles, names, occupations, or personality traits would have added limited value at this stage of the project.</p><p>Instead, the effort was directed toward clearly identifying what users want from the product, what problems they are trying to solve, and what would make the experience engaging in a social setting. Key considerations centered on ease of use, clarity of information, and the dynamics of making predictions with friends.</p><p>This phase helped define essential features such as match listings and selection, live scores and statistics, group-based competition, and performance tracking, while deliberately postponing more advanced ideas for later iterations.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_UserNeeds&FeatureScoping.png",
+                                "alt": "Screenshot of the Personae works to help frame the users' desires and app's features.",
+                                "source": "Persona-ish method and representation of users needs and desire for the monkeyBet app."
+                            }
+                        },
+                        {
+                            "step_title": "Flows, Rules & Interaction Design",
+                            "content": "<p>With a clearer feature scope, I moved on to mapping <strong>user flows</strong>, interaction rules, and edge cases. This phase is heavily represented on the Figma whiteboard, where different flows were explored such as logging in and out, placing a bet, and checking results.</p><p>A major focus was defining the <strong>rules of prediction</strong>: when bets can be placed, when they are locked, how outcomes are evaluated, and how users are ranked. We deliberately questioned traditional betting mechanics, asking whether users should be punished for wrong predictions, rewarded for consistency, or simply ranked based on accuracy over time.</p><p>These discussions led to the decision to favor <strong>lightweight, transparent rules</strong> that keep the experience playful and socially engaging rather than stressful or overly competitive.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_InteractionFlow.png",
+                                "alt": "Diagram illustrating key user flows such as authentication, bet placement, and result checking.",
+                                "source": "Pre-development schematic representation of monkeyBet's userflows and their connection to the already defined needs and desires."
+                            }
+                        },
+                        {
+                            "step_title": "Information Architecture & Feature Breakdown",
+                            "content": "<p>In parallel with interaction design, I worked on structuring the application’s <strong>information architecture</strong>. The whiteboard shows a clear breakdown of the app into major sections such as matches, groups, rankings, user profiles, and statistics.</p><p>This step helped identify which data should be globally accessible, which views are read-heavy versus action-driven, and how users move between individual matches and group-based competition views. The goal was to keep navigation shallow while still allowing users to dive deeper into statistics when they want to.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_InformationArchitecture.png",
+                                "alt": "High-level information architecture diagram showing the main sections and navigation structure of the application.",
+                                "source": "Pre-development schematic representation of the Sitemap of monkeyBet."
+                            }
+                        },
+                        {
+                            "step_title": "Technical Architecture Definition",
+                            "content": "<p>Beyond design, I actively took part in defining the <strong>technical architecture</strong> of the application together with my teammate. We jointly mapped how the frontend and backend would communicate, what data structures were needed, and how responsibilities should be separated.</p><p>The architecture follows a clear separation of concerns:</p><ul><li>The <strong>frontend</strong> (handled by me) is built in React and focuses on presentation, interactions, state management, and design system integration.</li><li>The <strong>backend</strong> (handled by my teammate, a DevOps engineer) manages authentication, data persistence, score and ranking computations, and the fetching of live data from the football API (<a href=\"https://www.api-football.com/documentation-v3#tag/Fixtures/operation/get-fixtures\" target=\"_blank\" rel=\"noopener noreferrer\">API-Football</a>).</li></ul><p>On the frontend side, I contributed to defining API contracts, data models (matches, bets, groups, users), and how asynchronous data should flow through the UI. This ensured that design decisions were technically feasible and scalable.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_TechnicalArchitecture.png",
+                                "alt": "Schema describing the architecture of the database and a partial specification of the API of monkeyBet.",
+                                "source": "Pre-development schematic representation of the Database and partial specification of the API."
+                            }
+                        },
+                        {
+                            "step_title": "Wireframing & Design Validation",
+                            "content": "<p>Once the structure and rules were in place, I created wireframes in Figma to validate layout, hierarchy, and usability. These wireframes focused on critical screens such as match listings, bet placement, group rankings, and profile statistics.</p><p>They were used to test assumptions with future users, quickly iterate on unclear interactions, and identify friction points before moving to high-fidelity design. This step helped confirm that the app remained easy to understand despite the underlying complexity of rules and data.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_Wireframe.png",
+                                "alt": "A screenshot of multiple frames of the initial Figma wireframe, they represent how early user interface designs and interactions looked like.",
+                                "source": "Screenshot of multiple frames of the initial Figma wireframe."
+                            }
+                        },
+                        {
+                            "step_title": "Design System & Design Tokens",
+                            "content": "<p>A dedicated <strong>design system</strong> was created to support long-term development. This included typography choices, light and dark color palettes, spacing rules, motion principles, and clearly defined component states.</p><p>In this project, <strong>design tokens are not limited to static values</strong>. While colors, surfaces, text roles, and semantic states are defined as tokens and shared between Figma and the codebase, they are also <strong>materialized through reusable React components</strong>.</p><p>Core primitives such as <em>Button</em>, <em>Text</em>, and layout or interaction components act as living tokens: they encode visual rules, interaction behavior, accessibility states, motion, and responsive logic directly in code. For example, button variants, sizes, hover and disabled behaviors, typography scales, and modal interactions are centralized and enforced through these components rather than redefined at usage level.</p><p>During this phase, external tools such as <a href=\"https://colorffy.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Colorffy</a> were used to explore, validate, and refine color palettes before integrating them into the design system.</p><p>This approach ensures strong visual consistency, reduces decision fatigue during development, and makes the system highly scalable. New features, screens, or user-customizable themes can be introduced by composing existing primitives.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_DesignSystem.png",
+                                "alt": "Definition of the design system and contribution to the brand identity.",
+                                "source": "Definition of the design system and contribution to the brand identity."
+                            }
+                        },
+                        {
+                            "step_title": "Frontend Implementation",
+                            "content": "<p>The frontend is currently under active development using <strong>React, TypeScript, and Tailwind</strong>. I am responsible for translating the design system into reusable components, implementing layouts, handling user interactions, and connecting the UI to backend APIs.</p><p>Development is iterative, with frequent adjustments to both design and code as new insights emerge. The focus remains on clarity, responsiveness, and maintainability.</p>",
+                            "picture": {
+                                "url": "gallery/2/monkeyBet_FrontEndImplement.png",
+                                "alt": "Screenshot of the in-development of MonkeyBet's interface.",
+                                "source": "Screenshot of the in-development of MonkeyBet's interface."
+                            }
+                        },
+                        {
+                            "step_title": "Ongoing Work & Roadmap",
+                            "content": "<p><strong>MonkeyBet</strong> is an ongoing project, and several key elements are still in progress or planned.</p><ul><li>Design and creation of a <strong>logo and finalized brand identity</strong>.</li><li>Extended user testing with a functional prototype.</li><li>Refinement of group dynamics and ranking logic.</li><li>More advanced statistics and historical performance views.</li><li>Potential expansion to additional sports beyond football.</li></ul><p>This roadmap allows the project to evolve organically while remaining grounded in validated user needs.</p>"
+                        }
+                    ],
+                    "results": "<p>As the project is still under active development, there are no final results yet. However, early feedback from wireframe testing and design exploration has been valuable in shaping the product’s direction and validating the core concept.</p>",
+                    "personal_reflection": "<p>This project represents an opportunity to apply a full product design and development workflow to a real, evolving application. Working on <strong>MonkeyBet</strong> has reinforced the importance of testing ideas early, building strong design foundations, and thinking long-term about scalability.</p><p>Because the project is ongoing, it continues to evolve alongside my skills as both a designer and a frontend developer.</p>"
                 },
                 "gallery": []
             }
