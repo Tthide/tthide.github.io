@@ -1,7 +1,7 @@
 <!-- Project List Component Template -->
-<div class="w-full flex flex-col-reverse items-center gap-7 lg:gap-14">
+<div class="w-full flex flex-col items-center gap-7 lg:gap-14">
     @defer {
-    @for (project of projects; track $index) {
+    @for (project of projects.reverse(); track $index) {
     <div
         class="w-full p-3.5 lg:p-5 max-h-[70svh] xl:h-[60svh] 2xl:h-[50svh] shadow-xl shadow-primary/40 md:shadow-primary/20 hover:shadow-primary/60 transition rounded-lg flex flex-col md:flex-row md:odd:flex-row-reverse gap-4 items-stretch">
 
