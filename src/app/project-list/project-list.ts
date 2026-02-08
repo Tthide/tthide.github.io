@@ -82,7 +82,7 @@ export class ProjectListComponent implements AfterViewInit, OnInit {
   
   ngOnInit(): void {
     this.dataService.getProjects().subscribe(data => {
-      this.projects = data.projects;
+      this.projects = data.projects.reverse();
 
       this.projects.forEach((_, index) => {
         this.showLeftShadow[index] = false;

@@ -99,4 +99,7 @@
         }
     }
   }
+},
+"cli": {
+  "analytics": false
 }
